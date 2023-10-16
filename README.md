@@ -1,11 +1,4 @@
 # march-madness-predictor
 This project uses historical data from March Madness tournaments for the last 10 years to predict future outcomes.
 
-Do you now understand how this works
-
-yeah I think we are getting the hang of it
-
-
-Hi how are you doing... testing testing
-
-another line of text here
+Clas time on 10/16 was spent collecting data. We are building our entire data set from scratch using ESPN and fivethirtyeight. 

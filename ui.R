@@ -4,5 +4,5 @@ library(ggplot2)
 
 ui <- fluidPage(
   titlePanel("Games Map")
-  
+
 )

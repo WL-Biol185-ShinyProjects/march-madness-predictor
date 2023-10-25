@@ -35,4 +35,8 @@ march_madness_data <- march_madness_data %>%
          game_state = `State Where Game was Played`)
 ```
 
+```{r}
+view(march_madness_data)
+```
+
 

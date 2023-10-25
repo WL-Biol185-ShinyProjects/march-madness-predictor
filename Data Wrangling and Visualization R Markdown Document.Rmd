@@ -35,8 +35,11 @@ march_madness_data <- march_madness_data %>%
          game_state = `State Where Game was Played`)
 ```
 
+
 ```{r}
-view(march_madness_data)
+game_total <- march_madness_data %>%
+  count(game_lat, game_lon)
 ```
+
 
 

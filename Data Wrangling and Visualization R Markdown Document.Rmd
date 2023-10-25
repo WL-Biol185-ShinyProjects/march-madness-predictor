@@ -1,0 +1,28 @@
+---
+title: "Data Manipulation March Madness"
+author: "Jonathan Molner"
+date: "10/25/2023"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+march_madness_data <- read_csv("~/march-madness-predictor/data/Bio_185_March_Madness_Data.csv")
+```
+
+
+```{r}
+view(march_madness_data)
+```
+

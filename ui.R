@@ -3,6 +3,10 @@ library(tidyverse)
 library(ggplot2)
 
 ui <- fluidPage(
-  titlePanel("Games Map")
-
+  titlePanel("title panel"),
+  
+  sidebarLayout(
+    sidebarPanel("sidebar panel"),
+    mainPanel("main panel")
+  )
 )

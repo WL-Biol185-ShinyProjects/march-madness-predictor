@@ -26,3 +26,13 @@ march_madness_data <- read_csv("~/march-madness-predictor/data/Bio_185_March_Mad
 view(march_madness_data)
 ```
 
+```{r}
+march_madness_data <- march_madness_data %>%
+  rename(game_lat = `Lat for City Where Game was played`,
+         game_lon = `Lon for City Where Game was Played`,
+         distance_favorite = `Distance to Favorite`,
+         game_city = `City Where Game Was Played`,
+         game_state = `State Where Game was Played`)
+```
+
+

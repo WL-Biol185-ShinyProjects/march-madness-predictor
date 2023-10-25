@@ -42,8 +42,13 @@ game_total <- march_madness_data %>%
 ```
 
 ```{r}
-glimpse(game_total)
+view(game_total)
 ```
+
+```{r}
+game_total$popup_text <- paste0(game_total$game_city, ": ", game_total$n, " games")
+```
+
 
 
 ```{r}
@@ -55,7 +60,7 @@ library(ggplot2)
 leaflet(data = game_total) %>% 
   setView(lng = -96.25, lat = 39.5, zoom = 4) %>%
   addTiles()%>%
-  addMarkers(popup = ~game_city)
+  addMarkers(popup = ~game_city, label = ~popup_text)
   
 ```
 

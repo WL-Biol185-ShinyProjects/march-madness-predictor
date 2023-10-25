@@ -28,8 +28,8 @@ view(march_madness_data)
 
 ```{r}
 march_madness_data <- march_madness_data %>%
-  rename(game_lat = `Lat for City Where Game was played`,
-         game_lon = `Lon for City Where Game was Played`,
+  rename(lat = `Lat for City Where Game was played`,
+         lng = `Lon for City Where Game was Played`,
          distance_favorite = `Distance to Favorite`,
          game_city = `City Where Game Was Played`,
          game_state = `State Where Game was Played`)
@@ -38,19 +38,24 @@ march_madness_data <- march_madness_data %>%
 
 ```{r}
 game_total <- march_madness_data %>%
-  count(game_lat, game_lon)
+  count(lat, lng, game_city)
 ```
 
+```{r}
+glimpse(game_total)
+```
 
 
 ```{r}
 library(leaflet)
 library(ggplot2)
-library(usmap)
 ```
 
 ```{r}
-leaflet() %>% addTiles()%>%
-  setView(lng = -96.25, lat = 39.5, zoom = 4)
+leaflet(data = game_total) %>% 
+  setView(lng = -96.25, lat = 39.5, zoom = 4) %>%
+  addTiles()%>%
+  addMarkers(popup = ~game_city)
+  
 ```
 

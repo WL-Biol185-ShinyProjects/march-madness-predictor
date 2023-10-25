@@ -7,3 +7,5 @@ NOTES FROM 10/16 Class time on 10/16 was spent collecting data. We are building 
 Notes from 10/18: Class time on 10/18 was spent on collecting as well as planning ideas for our visual output
 
 Notes from 10/23 - made the server and the UI also obtained baseline data set to be used for data wrangling and manipulation titled "Bio 185 March Madness Data" in data folder... will make changes offline and upload a new data set next class period
+
+Notes from 10/25: began data wrangling and visualization work on an rmarkdown to be applied to our server later. Completed our first visual interactive page using leaflet to display a map of the U.S. with markers for the lat and lng of each of the games played along with the total count of the games played within a given city

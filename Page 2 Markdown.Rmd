@@ -15,10 +15,29 @@ library(tidyverse)
 
 ```{r}
 march_madness_data <- read_csv("~/march-madness-predictor/data/Bio_185_March_Madness_Data.csv")
+conference_data <- read_csv("~/march-madness-predictor/data/mach_madness_conference_list.csv")
 ```
 
 ```{r}
-
+new_data <- march_madness_data %>%
+  left_join(conference_data, by = c("Favorite" = "Team"))
 ```
 
+```{r}
+new_data <- new_data %>%
+  select(Favorite, Underdog, Round, Conference, Year)
+```
+
+```{r}
+view(new_data)
+```
+
+### HERE
+
+```{r}
+new_data %>%
+  mutate(Conference = ifelse(
+    Conference = NA ~ "Non Power 6", NULL
+    ))
+```
 

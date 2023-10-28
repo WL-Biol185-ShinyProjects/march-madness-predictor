@@ -1,0 +1,24 @@
+---
+title: "Page 2 Markdown"
+author: "Jonathan Molner & Diya Shreenath"
+date: "10/28/2023"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+march_madness_data <- read_csv("~/march-madness-predictor/data/Bio_185_March_Madness_Data.csv")
+```
+
+```{r}
+
+```
+
+

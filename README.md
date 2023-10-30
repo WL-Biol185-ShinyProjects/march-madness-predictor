@@ -11,3 +11,5 @@ Notes from 10/23 - made the server and the UI also obtained baseline data set to
 Notes from 10/25: began data wrangling and visualization work on an rmarkdown to be applied to our server later. Completed our first visual interactive page using leaflet to display a map of the U.S. with markers for the lat and lng of each of the games played along with the total count of the games played within a given city
 
 Notes from 10/28: Completed first page on UI and Server.R. Started Page 2 work on R markdown document (joined tables), just completing manipulation.
+
+Notes from 10/30: Completed second page (Final Four conference predictor and # of teams from a given conference within final four predictor) R markdown document. Beginning to implement changes on UI and server now.

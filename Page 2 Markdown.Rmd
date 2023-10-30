@@ -31,3 +31,8 @@ new_data[is.na(new_data)] <- "Non Power 6"
 ```{r}
 view(new_data)
 ```
+
+```{r}
+
+```
+

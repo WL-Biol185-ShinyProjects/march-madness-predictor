@@ -14,36 +14,20 @@ library(tidyverse)
 ```
 
 ```{r}
-march_madness_data <- read_csv("~/march-madness-predictor/data/Bio_185_March_Madness_Data.csv")
+final_four_teams <- read_csv("~/march-madness-predictor/data/Final Four Teams.csv")
 conference_data <- read_csv("~/march-madness-predictor/data/mach_madness_conference_list.csv")
 ```
 
 ```{r}
-new_data <- march_madness_data %>%
-  left_join(conference_data, by = c("Favorite" = "Team"))
+new_data <- final_four_teams %>%
+  left_join(conference_data, by = c("Team" = "Team"))
 ```
 
 ```{r}
-new_data <- new_data %>%
-  select(Favorite, Underdog, Round, Conference, Year)
+new_data[is.na(new_data)] <- "Non Power 6"
 ```
+
 
 ```{r}
 view(new_data)
 ```
-
-```{r}
-new_data %>%
-  filter(Favorite == "Ohio State")
-```
-
-
-### HERE
-
-```{r}
-new_data %>%
-  mutate(Conference = ifelse(
-    Conference = NA ~ "Non Power 6", NULL
-    ))
-```
-

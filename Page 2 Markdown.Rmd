@@ -33,6 +33,26 @@ view(new_data)
 ```
 
 ```{r}
-
+data_count <- new_data %>%
+  select(Year, Conference) %>%
+  count(Conference, Year)
 ```
+
+
+```{r}
+view(data_count)
+```
+
+
+```{r}
+data_count <- data_count %>%
+  group_by(Conference, n) %>%
+  count()
+```
+
+```{r}
+data_count %>%
+  mutate(prob_occurence = nn / 83)
+```
+
 

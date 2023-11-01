@@ -50,8 +50,8 @@ data_count <- data_count %>%
 prob_occurrence <- data_count %>%
   mutate(prob_occurence = nn / 83)
 
-output$data_count_table <- renderTable({
-  data_count
+output$prob_occurrence_table <- renderTable({
+  prob_occurrence
 })
 
 output$team_data_table <- renderDataTable({

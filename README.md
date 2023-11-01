@@ -13,3 +13,5 @@ Notes from 10/25: began data wrangling and visualization work on an rmarkdown to
 Notes from 10/28: Completed first page on UI and Server.R. Started Page 2 work on R markdown document (joined tables), just completing manipulation.
 
 Notes from 10/30: Completed second page (Final Four conference predictor and # of teams from a given conference within final four predictor) R markdown document. Beginning to implement changes on UI and server now.
+
+Completed implementing the page 2 into the server and UI

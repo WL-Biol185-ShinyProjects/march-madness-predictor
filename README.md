@@ -18,7 +18,7 @@ Completed implementing the page 2 into the server and UI
 
 
 
-
+Notes from 11/1 Expanded data set to include distances... figured out haversine function to incorporate distances for page 3
 
         
 #conditionalPanel - to make an optional pane on the sam page as something else in the UI

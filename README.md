@@ -15,3 +15,10 @@ Notes from 10/28: Completed first page on UI and Server.R. Started Page 2 work o
 Notes from 10/30: Completed second page (Final Four conference predictor and # of teams from a given conference within final four predictor) R markdown document. Beginning to implement changes on UI and server now.
 
 Completed implementing the page 2 into the server and UI
+
+
+
+
+
+        
+#conditionalPanel - to make an optional pane on the sam page as something else in the UI

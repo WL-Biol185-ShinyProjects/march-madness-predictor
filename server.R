@@ -8,7 +8,7 @@ server <- function(input, output) {
   #Read the data
   march_madness_data <- read_csv("~/march-madness-predictor/data/Bio_185_March_Madness_Data.csv")
   
-  #Data manipulation for page 1 of app
+#Data manipulation for page 1 of app
   march_madness_data <- march_madness_data %>%
     rename(lat = `Lat for City Where Game was played`,
            lng = `Lon for City Where Game was Played`,

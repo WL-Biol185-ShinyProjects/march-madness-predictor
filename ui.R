@@ -25,6 +25,4 @@ ui <- fluidPage(
     )
 )
 )
-             
-        
-
+            

@@ -5,20 +5,26 @@ library(leaflet)
 
 #Define UI for the shiny app
 ui <- fluidPage(
-    titlePanel("March Madness Game Locations"),
-    leafletOutput("map")
-  )
+    titlePanel("March Madness Predictor"),
+    navbarPage("Tabs",
+       tabPanel("Game Locations",
+        leafletOutput("map"),
+          textOutput("text1")
+               ),
+    tabPanel("Probability Predictor",
+      sidebarLayout(
+        sidebarPanel(
+          h4("Data Count"),
+          dataTableOutput("data_count_table")
+        ),
+        mainPanel(
+          h4("Team Data"),
+          dataTableOutput("team_data_table")
+        )
+      )
+    )
+)
+)
+             
+        
 
-
-
-
-
-
-#ui <- fluidPage(
-  #titlePanel("title panel"),
-  
-  #sidebarLayout(
-   # sidebarPanel("sidebar panel"),
-   # mainPanel("main panel")
- # )
-#)

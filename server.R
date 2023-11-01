@@ -8,7 +8,7 @@ server <- function(input, output) {
   #Read the data
   march_madness_data <- read_csv("~/march-madness-predictor/data/Bio_185_March_Madness_Data.csv")
   
-  #Data manipulation
+  #Data manipulation for page 1 of app
   march_madness_data <- march_madness_data %>%
     rename(lat = `Lat for City Where Game was played`,
            lng = `Lon for City Where Game was Played`,
@@ -26,23 +26,42 @@ server <- function(input, output) {
       setView(lng = -96.25, lat = 39.5, zoom = 4) %>%
       addTiles()%>%
       addMarkers(popup = ~game_city, label = ~popup_text)
+})
+
+#Data manipulation for page 2 of app
+  
+final_four_teams <- read_csv("~/march-madness-predictor/data/Final Four Teams.csv")
+conference_data <- read_csv("~/march-madness-predictor/data/mach_madness_conference_list.csv")
+
+new_data <- final_four_teams %>%
+  left_join(conference_data, by = c("Team" = "Team"))
+
+new_data[is.na(new_data)] <- "Non Power 6"
+
+data_count <- new_data %>%
+  select(Year, Conference) %>%
+  count(Conference, Year)
+
+data_count <- data_count %>%
+  group_by(Conference, n) %>%
+  count()
+
+#Calculate and display probabilities
+prob_occurrence <- data_count %>%
+  mutate(prob_occurence = nn / 83)
+
+output$data_count_table <- renderTable({
+  data_count
+})
+
+output$team_data_table <- renderDataTable({
+  new_data
+})
+
+output$prob_text <- renderText({
+  paste("Probability of Occurrence: ", prob_occurrence$prob_occurrence)
   })
 }
-
-#Run the shiny app
-#shinyApp(ui, server)
-
-
-
-
-
-
-#server <- function(input, output) {
-  
-  
-#}
-
-#shinyApp(ui, server)
 
 
 

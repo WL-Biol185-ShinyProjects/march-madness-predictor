@@ -94,15 +94,24 @@ total_team_distance_traveled <- left_join(favorite_data_table, underdog_data_tab
 ```
 
 ```{r}
-total_team_distance_traveled %>%
+total_team_distance_traveled <- total_team_distance_traveled %>%
   mutate(total_team_travel = (total_distance_favorite + total_underdog_distance))
+```
+
+```{r}
+total_team_distance_traveled$total_underdog_distance[is.na(total_team_distance_traveled$total_underdog_distance)] <- 0
+total_team_distance_traveled$total_distance_favorite[is.na(total_team_distance_traveled$total_distance_favorite)] <- 0
+total_team_distance_traveled$total_team_travel[is.na(total_team_distance_traveled$total_team_travel)] <- 0
 ```
 
 
 ```{r}
-total_team_distance_traveled %>%
-  group_by(Year, team_name) %>%
-  mutate(distance = max(total_distance_favorite | total_underdog_distance | total_team_travel))
+total_team_distance_traveled <- total_team_distance_traveled %>%
+  group_by(team_name, Year) %>%
+  mutate(kilometers_traveled = pmax(total_distance_favorite, total_underdog_distance, total_team_travel))
 ```
-
-
+```{r}
+total_team_distance_traveled %>%
+  select(Year, team_name, kilometers_traveled)
+```
+#the discrepency in rows is because of duplicates when the team is shown as a favorite and an underdog --- filter out duplicates

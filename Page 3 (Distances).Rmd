@@ -90,7 +90,7 @@ underdog_data_table <- underdog_data_table %>%
 
 
 ```{r}
-total_team_distance_traveled <- left_join(favorite_data_table, underdog_data_table, by = c(Year, Round, team_name))
+total_team_distance_traveled <- left_join(favorite_data_table, underdog_data_table, by = c("Year" = "Year", "team_name" = "team_name"))
 ```
 
 ```{r}
@@ -99,5 +99,10 @@ total_team_distance_traveled %>%
 ```
 
 
+```{r}
+total_team_distance_traveled %>%
+  group_by(Year, team_name) %>%
+  mutate(distance = max(total_distance_favorite | total_underdog_distance | total_team_travel))
+```
 
 

@@ -49,7 +49,7 @@ haversine <- function(long1, lat1, long2, lat2, round = 3) {
 
 ```{r}
 distance_data <- distance_data %>%
-  mutate(distance = haversine(College_lon, College_lat, `Lon for City Where Game was Played`, `Lat for City Where Game was played`, round = 0))
+  mutate(distance_favorite = haversine(College_lon, College_lat, `Lon for City Where Game was Played`, `Lat for City Where Game was played`, round = 0))
 ```
 
 
@@ -60,12 +60,33 @@ distance_data <- distance_data %>%
 
 ```{r}
 distance_data <- distance_data %>%
-  select(Year, Underdog, Favorite, distance, distance_underdog, Round, `Favorite (Seed)`)
+  select(Year, Favorite, Underdog, distance_favorite, distance_underdog, Round)
 ```
 
 ```{r}
-distance_data %>%
-  group_by(Favorite, Year, Round) %>%
-  mutate(total_distance = sum(distance))
+favorite_data_table <- distance_data %>%
+  select(Year, Favorite, distance_favorite, Round) %>%
+  group_by(Favorite, Year) %>%
+  mutate(total_distance_favorite = sum(distance_favorite))
 ```
+
+```{r}
+underdog_data_table <- distance_data %>%
+  select(Year, Underdog, distance_underdog, Round) %>%
+  group_by(Underdog, Year) %>%
+  mutate(total_underdog_distance = sum(distance_underdog))
+```
+
+
+```{r}
+total_team_distance_traveled <- left_join(favorite_data_table, underdog_data_table, by = c("Favorite" = "Underdog", "Year" = "Year", "Round" = "Round"))
+```
+
+```{r}
+total_team_distance_traveled %>%
+  mutate(total_team_travel = (total_distance_favorite + total_underdog_distance))
+```
+
+
+
 

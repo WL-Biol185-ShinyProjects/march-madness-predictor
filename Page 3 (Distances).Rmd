@@ -52,10 +52,6 @@ distance_data <- distance_data %>%
   mutate(distance = haversine(College_lon, College_lat, `Lon for City Where Game was Played`, `Lat for City Where Game was played`, round = 0))
 ```
 
-```{r}
-distance_data %>%
-  mutate(College_lon)
-```
 
 ```{r}
 distance_data <- distance_data %>%
@@ -64,12 +60,12 @@ distance_data <- distance_data %>%
 
 ```{r}
 distance_data <- distance_data %>%
-  select(Year, Favorite, distance, Round, `Favorite (Seed)`)
+  select(Year, Underdog, Favorite, distance, distance_underdog, Round, `Favorite (Seed)`)
 ```
 
 ```{r}
 distance_data %>%
-  group_by(Favorite, Year) %>%
+  group_by(Favorite, Year, Round) %>%
   mutate(total_distance = sum(distance))
 ```
 

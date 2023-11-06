@@ -79,7 +79,18 @@ underdog_data_table <- distance_data %>%
 
 
 ```{r}
-total_team_distance_traveled <- left_join(favorite_data_table, underdog_data_table, by = c("Favorite" = "Underdog", "Year" = "Year", "Round" = "Round"))
+favorite_data_table <- favorite_data_table %>%
+  mutate(team_name = Favorite)
+```
+
+```{r}
+underdog_data_table <- underdog_data_table %>%
+  mutate(team_name = Underdog)
+```
+
+
+```{r}
+total_team_distance_traveled <- left_join(favorite_data_table, underdog_data_table, by = c(Year, Round, team_name))
 ```
 
 ```{r}

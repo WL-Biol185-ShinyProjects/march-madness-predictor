@@ -20,5 +20,10 @@ Completed implementing the page 2 into the server and UI
 
 Notes from 11/1 Expanded data set to include distances... figured out haversine function to incorporate distances for page 3
 
+Notes from 11/5 Added extra data to lattitude longitude data table to find distances traveled for underdog teams
+
+Notes from 11/6 Finished up code for page to find the total distances traveled by each of the teams for every team in every year of the data set (regardless if a team was a favorite or underdog)
+
+Note: we are planning to join our finished table to the final four data set to filter out the distances traveled among final four teams then we will implement a slider bar to find the distances traveled among final four teams (teams on the west coast probably travel more)
         
 #conditionalPanel - to make an optional pane on the sam page as something else in the UI

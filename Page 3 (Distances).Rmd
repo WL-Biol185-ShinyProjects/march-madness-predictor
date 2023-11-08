@@ -88,6 +88,11 @@ underdog_data_table <- underdog_data_table %>%
   mutate(team_name = Underdog)
 ```
 
+```{r}
+total_team_distance_traveled <- merge <- full_join(favorite_data_table, underdog_data_table, by = c("Year" = "Year", "team_name" = "team_name"))
+```
+
+
 
 ```{r}
 total_team_distance_traveled <- left_join(favorite_data_table, underdog_data_table, by = c("Year" = "Year", "team_name" = "team_name"))
@@ -120,3 +125,19 @@ total_team_distance_traveled %>%
 total_team_distance_traveled <- unique(total_team_distance_traveled[, c("team_name", "Year", "kilometers_traveled")])
 ```
 #the new dataset has 332 rows after filtering out duplicates
+
+
+```{r}
+total_team_distance_traveled
+```
+
+```{r}
+total_team_distance_traveled <- total_team_distance_traveled %>%
+  inner_join(final_four_teams, by = c("Year" = "Year", "team_name" = "Team"))
+```
+
+```{r}
+total_team_distance_traveled %>%
+  
+```
+

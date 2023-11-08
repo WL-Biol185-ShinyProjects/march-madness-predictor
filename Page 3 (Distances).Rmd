@@ -55,16 +55,6 @@ distance_data <- distance_data %>%
   mutate(distance_underdog = haversine(Underdog_lon, Underdog_lat, `Lon for City Where Game was Played`, `Lat for City Where Game was played`, round = 0))
 ```
 
-```{r}
-teams <- read_csv("~/march-madness-predictor/data/Team Names.csv")
-```
-
-```{r}
-teams <- teams %>%
-  unique()
-```
-
-
 
 ```{r}
 distance_data <- distance_data %>%
@@ -100,11 +90,11 @@ underdog_data_table <- underdog_data_table %>%
 total_team_distance_traveled <- merge <- full_join(favorite_data_table, underdog_data_table, by = c("Year" = "Year", "team_name" = "team_name"))
 ```
 
-
-
-```{r}
-total_team_distance_traveled <- left_join(favorite_data_table, underdog_data_table, by = c("Year" = "Year", "team_name" = "team_name"))
-```
+### might not need the below code chunk
+###```{r}
+###total_team_distance_traveled <- full_join(favorite_data_table, underdog_data_table, by = c("Year" = "Year", "team_name" = "team_name"))
+###```
+### ends here
 
 ```{r}
 total_team_distance_traveled <- total_team_distance_traveled %>%
@@ -144,8 +134,5 @@ total_team_distance_traveled <- total_team_distance_traveled %>%
   inner_join(final_four_teams, by = c("Year" = "Year", "team_name" = "Team"))
 ```
 
-```{r}
-total_team_distance_traveled %>%
-  
-```
+
 

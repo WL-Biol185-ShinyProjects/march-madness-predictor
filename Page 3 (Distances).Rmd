@@ -110,8 +110,13 @@ total_team_distance_traveled <- total_team_distance_traveled %>%
   group_by(team_name, Year) %>%
   mutate(kilometers_traveled = pmax(total_distance_favorite, total_underdog_distance, total_team_travel))
 ```
+
 ```{r}
 total_team_distance_traveled %>%
-  select(Year, team_name, kilometers_traveled)
+  select(Year, team_name, kilometers_traveled,)
 ```
-#the discrepency in rows is because of duplicates when the team is shown as a favorite and an underdog --- filter out duplicates
+#created 750 rows because for each team who has distance data as a favorite and an underdog shows up with 3 entries in the original table because data for underdog and favorite automatically means data for total distance travelened
+```{r}
+total_team_distance_traveled <- unique(total_team_distance_traveled[, c("team_name", "Year", "kilometers_traveled")])
+```
+#the new dataset has 332 rows after filtering out duplicates

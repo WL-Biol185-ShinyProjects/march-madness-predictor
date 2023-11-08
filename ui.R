@@ -11,18 +11,16 @@ ui <- fluidPage(
         leafletOutput("map"),
           textOutput("text1")
                ),
-    tabPanel("Probability Predictor",
-      sidebarLayout(
-        sidebarPanel(
-          h4("Data Count"),
-          dataTableOutput("data_count_table")
-        ),
-        mainPanel(
-          h4("Team Data"),
-          dataTableOutput("team_data_table")
-        )
+#UI for Tab 2       
+    tabPanel("Final Four Probability by Conference",
+    sidebarLayout(
+      sidebarPanel(
+        selectInput("conference", "Select Conference", choices = unique(new_data$Conference)),
+      ),
+      mainPanel(
+        tableOutput("data_table")
       )
     )
-)
-)
-            
+)))       
+        
+

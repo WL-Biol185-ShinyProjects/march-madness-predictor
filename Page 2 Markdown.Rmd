@@ -27,7 +27,6 @@ new_data <- final_four_teams %>%
 new_data[is.na(new_data)] <- "Non Power 6"
 ```
 
-
 ```{r}
 view(new_data)
 ```
@@ -38,11 +37,9 @@ data_count <- new_data %>%
   count(Conference, Year)
 ```
 
-
 ```{r}
 view(data_count)
 ```
-
 
 ```{r}
 data_count <- data_count %>%
@@ -54,5 +51,7 @@ data_count <- data_count %>%
 data_count %>%
   mutate(prob_occurence = nn / 83)
 ```
+
+
 
 

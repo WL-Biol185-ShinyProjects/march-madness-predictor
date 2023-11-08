@@ -21,41 +21,26 @@ library(tidyverse)
 ```
 
 ```{r}
-final_four_teams <- read_csv("~/march-madness-predictor/data/Final Four Teams.csv")
-conference_data <- read_csv("~/march-madness-predictor/data/mach_madness_conference_list.csv")
+final_four_seeds <- read_csv("~/march-madness-predictor/data/Seed Data.csv")
+```
+```{r}
+seed_count <- final_four_seeds %>%
+  select(Year, Seed) %>%
+  count(Seed, Year)
 ```
 
 ```{r}
-new_data <- final_four_teams %>%
-  left_join(conference_data, by = c("Team" = "Team"))
+view(seed_count)
 ```
 
 ```{r}
-new_data[is.na(new_data)] <- "Non Power 6"
-```
-
-```{r}
-view(new_data)
-```
-
-```{r}
-data_count <- new_data %>%
-  select(Year, Conference) %>%
-  count(Conference, Year)
-```
-
-```{r}
-view(data_count)
-```
-
-```{r}
-data_count <- data_count %>%
-  group_by(Conference, n) %>%
+seed_count <- seed_count %>%
+  group_by(Seed, n) %>%
   count()
 ```
 
 ```{r}
-data_count %>%
+seed_count %>%
   mutate(prob_occurence = nn / 83)
 ```
 

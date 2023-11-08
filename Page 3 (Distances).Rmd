@@ -136,3 +136,8 @@ total_team_distance_traveled <- total_team_distance_traveled %>%
 
 
 
+```{r}
+total_team_distance_traveled <- total_team_distance_traveled %>%
+  mutate(miles_traveled = kilometers_traveled * .621371)
+```
+

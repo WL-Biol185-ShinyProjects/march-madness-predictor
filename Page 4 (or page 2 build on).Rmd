@@ -40,8 +40,18 @@ seed_count <- seed_count %>%
 ```
 
 ```{r}
-seed_count %>%
-  mutate(prob_occurence = nn / 83)
+seed_count <- seed_count %>%
+rename("Number of Teams Of Given Seed" = "n",
+         "Number of Times Occurred" = "nn")
+```
+
+```{r}
+seed_count <- seed_count %>%
+  mutate(prob_occurence = `Number of Times Occurred`*100 / 44)
+```
+
+```{r}
+seed_count$prob_occurence <- round(seed_count$prob_occurence, digits = 0)
 ```
 
 

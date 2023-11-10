@@ -46,12 +46,20 @@ data_count <- data_count %>%
   group_by(Conference, n) %>%
   count()
 ```
-
+### Renaming variables here
 ```{r}
-data_count %>%
-  mutate(prob_occurence = nn / 83)
+data_count <- data_count %>%
+  rename("Number of Teams Within Conference" = "n",
+         "Number of Times Occurred" = "nn")
 ```
 
+```{r}
+data_count <- data_count %>%
+  mutate(prob_occurence = (`Number of Times Occurred` / 83)*100)
+```
 
+```{r}
+data_count$prob_occurence <- round(data_count$prob_occurence, digits = 0)
+```
 
 

@@ -1,0 +1,44 @@
+---
+title: "Team Locations on Map Tab"
+author: "Jonathan Molner & Diya Shreenath"
+date: "11/11/2023"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+team_location_data <- read_csv("~/march-madness-predictor/data/Team locations.csv")
+```
+
+```{r}
+team_location_data <- team_location_data %>%
+  unique()
+```
+
+```{r}
+team_location_data <- team_location_data %>%
+  filter(Lat > 0) %>%
+  rename(lat = Lat,
+         lng = Lon)
+```
+
+```{r}
+library(leaflet)
+library(ggplot2)
+```
+
+```{r}
+leaflet(data = team_location_data) %>% 
+  setView(lng = -96.25, lat = 39.5, zoom = 4) %>%
+  addTiles()%>%
+  addMarkers(popup = ~Team)
+```

@@ -21,10 +21,34 @@ march_madness_data <- read_csv("~/march-madness-predictor/data/Bio_185_March_Mad
 ```
 
 ```{r}
-march_madness_data %>%
+march_madness_data <- march_madness_data %>%
   group_by(Winner) %>%
-  count(Winner) %>%
-  ggplot(mapping = aes(x = "", y = n, fill = Winner)) +
-  geom_bar(stat="identity", width=1) +
-  coord_polar("y", start=0)
+  count(Winner)
+```
+
+```{r}
+win_pct_data <- march_madness_data %>%
+  rename(number_of_wins = n) %>%
+  ungroup() %>%
+  mutate(total_games = sum(number_of_wins)) %>%
+  group_by(Winner) %>%
+  mutate(win_pct = number_of_wins / total_games) %>%
+  select(Winner, number_of_wins, win_pct)
+```
+
+```{r}
+win_pct_data <- win_pct_data %>%
+  mutate(Winner = as.character(Winner))
+```
+
+```{r}
+win_pct_data <- win_pct_data %>%
+      mutate(Winner = ifelse(Winner == "0","Underdog Won","Favorite Won"))
+```
+
+
+```{r}
+win_pct_data %>%
+ggplot(mapping = aes(x = Winner, y = win_pct)) +
+  geom_bar(stat="identity")
 ```

@@ -1,0 +1,30 @@
+---
+title: "Probability and Additional Graphs"
+author: "Jonathan Molner & Diya Shreenath"
+date: "11/11/2023"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+```
+
+```{r}
+march_madness_data <- read_csv("~/march-madness-predictor/data/Bio_185_March_Madness_Data.csv")
+```
+
+```{r}
+march_madness_data %>%
+  group_by(Winner) %>%
+  count(Winner) %>%
+  ggplot(mapping = aes(x = "", y = n, fill = Winner)) +
+  geom_bar(stat="identity", width=1) +
+  coord_polar("y", start=0)
+```

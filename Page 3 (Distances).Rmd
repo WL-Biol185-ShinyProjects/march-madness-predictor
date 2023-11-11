@@ -139,3 +139,8 @@ total_team_distance_traveled <- total_team_distance_traveled %>%
 total_team_distance_traveled$miles_traveled <- round(total_team_distance_traveled$miles_traveled, digits = 0)
 ```
 
+```{r}
+total_team_distance_traveled %>%
+  ggplot(mapping = aes(x = miles_traveled)) +
+  geom_histogram(binwidth = 400)
+```

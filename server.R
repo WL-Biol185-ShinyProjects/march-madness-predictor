@@ -53,10 +53,13 @@ output$data_table <- renderTable({
     count(Conference, Year) %>%
     group_by(Conference, n) %>%
     count() %>%
-    mutate(prob_occurence = nn *100 / 83) %>%
+    mutate(Probability = nn *100 / 83) %>%
     rename("Number of Teams Within Conference" = "n", 
-           "Number of Times Occurred" = "nn")
+           "Number of Times Occurred" = "nn") %>%
+    mutate(Probability = round(Probability, digits = 2)) %>%
+    mutate(Probability = paste0(Probability, "%"))
   return(data_count)
+  
 })
 
 #Code for Tab 3

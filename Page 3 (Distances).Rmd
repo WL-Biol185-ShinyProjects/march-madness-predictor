@@ -23,6 +23,7 @@ library(tidyverse)
 
 ```{r}
 distance_data <- read_csv("~/march-madness-predictor/data/Bio 185 March Madness Data Lats.csv")
+final_four_teams <- read_csv("~/march-madness-predictor/data/Final Four Teams.csv")
 ```
 
 

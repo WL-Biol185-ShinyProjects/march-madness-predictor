@@ -30,7 +30,7 @@ server <- function(input, output) {
       addMarkers(popup = ~game_city, label = ~popup_text)
 })
 
-#Code for Tab 2
+#Code for Tab 2 Part 1
 
 #read the data
 final_four_teams <- read_csv("~/march-madness-predictor/data/Final Four Teams.csv")
@@ -61,6 +61,29 @@ output$data_table <- renderTable({
   return(data_count)
   
 })
+
+#Code for Tab 2 Part 2
+final_four_seeds <- read_csv("~/march-madness-predictor/data/Seed Data.csv")
+
+seed_count <- reactive({
+  new_seed_data %>%
+    filter(Seed == input$seed)
+  
+})
+
+output$data_table_seed <- renderTable({
+  data <- final_four_seeds %>%
+    select(Year, Seed) %>%
+    count(Seed, Year) %>%
+    group_by(Seed, n) %>%
+    count() %>%
+    mutate(prob_occurrence = (nn * 100) / 44) %>%
+    rename("Number of Teams Of Given Seed" = "n",
+           "Number of Times Occurred" = "nn") %>%
+    mutate(prob_occurrence = round(prob_occurrence, digits = 0))
+  return(data)
+    
+  })
 
 #Code for Tab 3
 #Load Data

@@ -23,6 +23,7 @@ library(tidyverse)
 ```{r}
 final_four_seeds <- read_csv("~/march-madness-predictor/data/Seed Data.csv")
 ```
+
 ```{r}
 seed_count <- final_four_seeds %>%
   select(Year, Seed) %>%

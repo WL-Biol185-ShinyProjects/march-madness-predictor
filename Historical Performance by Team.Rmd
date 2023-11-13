@@ -27,23 +27,32 @@ historical_data <- read_csv("~/march-madness-predictor/data/Bio_185_March_Madnes
 favorite_maximum_round <- historical_data %>%
   group_by(Favorite, Year) %>%
   mutate(maximum_round_favorite = max(Round)) %>%
-  select(Year, Favorite, Underdog, Round, maximum_round_favorite)
+  select(Year, Favorite, maximum_round_favorite)
 ```
 
 ```{r}
 underdog_maximum_round <- historical_data %>%
   group_by(Underdog, Year) %>%
   mutate(maximum_round_underdog = max(Round)) %>%
-  select(Year, Favorite, Underdog, Round, maximum_round_underdog)
+  select(Year, Underdog, maximum_round_underdog)
 ```
 
 ```{r}
-aggregate_maximum_round <- full_join(favorite_maximum_round, underdog_maximum_round, by = c("Year" = "Year", "Favorite" = "Favorite", "Underdog" = "Underdog", "Round" = "Round"))
+aggregate_maximum_round <- full_join(favorite_maximum_round, underdog_maximum_round, by = c("Year" = "Year", "Favorite" = "Underdog"))
+```
+
+```{r}
+aggregate_maximum_round$maximum_round_favorite[is.na(aggregate_maximum_round$maximum_round_favorite)] <- 0
+aggregate_maximum_round$maximum_round_underdog[is.na(aggregate_maximum_round$maximum_round_underdog)] <- 0
 ```
 
 
-### This is right but we don't have the right "max" should be basically the idea is filter for the last time team "x" pops up in a year as either a favorite or an underdog and what round was it
 ```{r}
 aggregate_maximum_round <- aggregate_maximum_round %>%
-  mutate(total_max_round = (maximum_round_favorite + maximum_round_underdog))
+  group_by(Year, Favorite) %>%
+  mutate(final_round = pmax(maximum_round_favorite, maximum_round_underdog)) %>%
+  rename("Team" = "Favorite") %>%
+  select(Year, Team, final_round) %>%
+  distinct() %>%
+  arrange(desc(Year), Team)
 ```

@@ -56,3 +56,12 @@ aggregate_maximum_round <- aggregate_maximum_round %>%
   distinct() %>%
   arrange(desc(Year), Team)
 ```
+
+
+```{r}
+aggregate_maximum_round <- aggregate_maximum_round %>%
+  mutate(final_round = factor(final_round,
+                              levels = c(1, 2, 3, 4, 5, 6),
+         labels = c("First Round", "Second Round", "Sweet Sixteen", "Elite Eight", "Final Four", "Championship Game")))
+```
+

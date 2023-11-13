@@ -37,9 +37,25 @@ library(ggplot2)
 ```
 
 ```{r}
+icons <- makeAwesomeIcon(
+  icon = "home",
+  library = "ion",
+  markerColor = "red",
+  iconColor = "red"
+)
+```
+
+
+```{r}
+icon.fa <- makeAwesomeIcon(icon = 'flag', markerColor = 'orange', library='fa', iconColor = 'gray')
+```
+
+
+
+```{r}
 leaflet(data = team_location_data) %>% 
   setView(lng = -96.25, lat = 39.5, zoom = 4) %>%
   addTiles()%>%
-  addMarkers(popup = ~Team, label = ~Team)
+  addAwesomeMarkers(popup = ~Team, label = ~Team, icon = icon.fa)
             
 ```

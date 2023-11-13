@@ -30,3 +30,7 @@ Note: we are planning to join our finished table to the final four data set to f
 
 
 Notes from 11/8 Finished up the code for our distances traveled data for page 3 and will begin implementing how to include the page in our ui and server. Also added an extra flair for our page 2 (Final Four) page by adding a probability predictor for a given seed (and the quantity of a given seed) to reach the final four.
+
+Notes from 11/10-12 Made a multitude of changes adding additional pages including a map of all locations for each team, a couple of data visualization plots showing a density distribution of how far each team traveled, also implemented aesthetic changes to the server and UI
+
+Notes from 11/13 Created new marker colors for the College locations so we can overlay the two maps, made an interactive chart that shows the historical performance by each team by year, implemneted the seed probability predictor into the server/UI

@@ -131,7 +131,10 @@ total_team_distance_traveled <- total_team_distance_traveled %>%
 
 #Convert kilometers to miles
 total_team_distance_traveled <- total_team_distance_traveled %>%
-  mutate(miles_traveled = kilometers_traveled * .621371)
+  mutate(miles_traveled = kilometers_traveled * .621371) %>%
+  mutate(miles_traveled = as.integer(miles_traveled)) %>%
+  mutate(Year = as.integer(Year)) %>%
+  mutate(kilometers_traveled = as.integer(kilometers_traveled))
 
 #display data table
   output$data_table_distances <- renderTable({

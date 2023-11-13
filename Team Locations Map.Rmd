@@ -40,5 +40,6 @@ library(ggplot2)
 leaflet(data = team_location_data) %>% 
   setView(lng = -96.25, lat = 39.5, zoom = 4) %>%
   addTiles()%>%
-  addMarkers(popup = ~Team)
+  addMarkers(popup = ~Team, label = ~Team)
+            
 ```

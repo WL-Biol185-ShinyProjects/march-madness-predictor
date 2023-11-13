@@ -17,6 +17,7 @@ When you click the **Knit** button a document will be generated that includes bo
 
 ```{r}
 library(tidyverse)
+library(lubridate)
 ```
 
 ```{r}
@@ -63,5 +64,20 @@ aggregate_maximum_round <- aggregate_maximum_round %>%
   mutate(final_round = factor(final_round,
                               levels = c(1, 2, 3, 4, 5, 6),
          labels = c("First Round", "Second Round", "Sweet Sixteen", "Elite Eight", "Final Four", "Championship Game")))
+```
+
+```{r}
+aggregate_maximum_round$Year <- round(aggregate_maximum_round$Year, digits = 0)
+```
+
+### Graph is set. Just want to change the format from year to a date format to make the x axis of the graph discrete so we can see year by year on the x axis.
+```{r}
+aggregate_maximum_round %>%
+  mutate(Year = as.character(Year)) %>%
+  mutate(Year = as.Date(Year))
+  filter(Team == "UNC") %>%
+  ggplot(mapping = aes(x = Year, y = final_round)) +
+  geom_point() +
+  xlim(2011, 2024)
 ```
 

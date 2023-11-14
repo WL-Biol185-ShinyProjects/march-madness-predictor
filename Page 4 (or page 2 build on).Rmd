@@ -54,7 +54,17 @@ seed_count <- seed_count %>%
 ```{r}
 seed_count$prob_occurence <- round(seed_count$prob_occurence, digits = 0)
 ```
+### Aesthetic Work
+```{r}
+seed_count$Seed[is.na(seed_count$Seed)] <- 0
+seed_count$prob_occurence <- paste0(seed_count$prob_occurence, "%")
+```
 
+```{r}
+seed_count %>%
+  filter(Seed != 0) %>%
+  arrange(Seed)
+```
 
 
 

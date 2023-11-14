@@ -3,9 +3,11 @@ library(shiny)
 library(tidyverse)
 library(ggplot2)
 library(leaflet)
+library(shinythemes)
 
 #Define UI for the shiny app
 ui <- fluidPage(
+    theme = shinytheme("cerulean"),
     titlePanel("March Madness Predictor"),
     
 #set up tabs    
@@ -16,22 +18,21 @@ ui <- fluidPage(
           textOutput("text1")
                ),
 #UI for Tab 2
-      tabPanel("Final Four Probability by Conference",
-          selectInput("conference", "Select Conference", 
-              choices = unique(new_data$Conference)
-          ),
-         fluidRow(
-           column(6,
-              selectInput("seed_select", "Select a Seed",
-                  choices = unique(final_four_seeds$Seed),
-                  )
-              ),
-         column(6,
-              tableOutput("data_table_seed")
-         )
-      ),
-          tableOutput("data_table"),
-          textOutput("text2"),
+      tabPanel("Final Four Predictor",
+              fluidRow(
+                column(10,
+                      selectInput("conference", "Select Conference", 
+                                  choices = unique(new_data$Conference)
+                       ),
+                      tableOutput("data_table")
+                ),
+                column(10,
+                      selectInput("seed_select", "Select a Seed",
+                                choices = unique(final_four_seeds$Seed)
+                      ),
+                      tableOutput("data_table_seed")
+                )
+              )
      ),
 
 #UI for Tab 3

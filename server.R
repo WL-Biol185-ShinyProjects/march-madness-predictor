@@ -63,16 +63,16 @@ output$data_table <- renderTable({
 })
 
 #Code for Tab 2 Part 2
-final_four_seeds <- read_csv("~/march-madness-predictor/data/Seed Data.csv")
+  final_four_seeds <- read_csv("~/march-madness-predictor/data/Seed Data.csv")
 
-seed_count <- reactive({
-  new_seed_data %>%
-    filter(Seed == input$seed)
+  seed_count <- reactive({
+    final_four_seeds %>%
+      filter(Seed == input$seed_select)
   
 })
 
 output$data_table_seed <- renderTable({
-  data <- final_four_seeds %>%
+  data <- seed_count() %>%
     select(Year, Seed) %>%
     count(Seed, Year) %>%
     group_by(Seed, n) %>%

@@ -13,7 +13,9 @@ ui <- fluidPage(
 #set up tabs    
     navbarPage(
       "Tabs",
-       tabPanel("Game Locations",
+       tabPanel("Leaflet Maps",
+          selectInput("location_type", "Select to See Either Game or Team Locations",
+                      choices = c("Game Locations","Team Locations")),
         leafletOutput("map"),
           textOutput("text1")
                ),

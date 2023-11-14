@@ -36,6 +36,7 @@ library(leaflet)
 library(ggplot2)
 ```
 
+
 ```{r}
 icons <- makeAwesomeIcon(
   icon = "home",

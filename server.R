@@ -47,15 +47,11 @@ server <- function(input, output) {
 #read the data
 final_four_teams <- read_csv("~/march-madness-predictor/data/Final Four Teams.csv")
 conference_data <- read_csv("~/march-madness-predictor/data/mach_madness_conference_list.csv")
-
-new_data <- final_four_teams %>%
-  left_join(conference_data, by = c("Team" = "Team"))
-
-new_data[is.na(new_data)] <- "Non Power 6"
+final_four_conference_data <- read_csv("~/march-madness-predictor/data/final_four_conference_data.csv")
 
 #Calculate and Display the probabilities
 filtered_data <- reactive({
-  new_data %>%
+  final_four_conference_data %>%
     filter(Conference == input$conference)
 })
 

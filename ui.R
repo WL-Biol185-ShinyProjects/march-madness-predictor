@@ -4,6 +4,7 @@ library(tidyverse)
 library(ggplot2)
 library(leaflet)
 library(shinythemes)
+library(lubridate)
 
 #Define UI for the shiny app
 ui <- fluidPage(
@@ -40,10 +41,18 @@ ui <- fluidPage(
 #UI for Tab 3
     tabPanel("Distances",
       selectInput("team_select", "Select a Team That Has Made It To The Final Four In The Last 10 Years", 
-          choices = unique(total_team_distance_traveled$team_name)
+                  choices = unique(total_team_distance_traveled$team_name)
         ),
       plotOutput("box_chart"),
       tableOutput("data_table_distances")
+    ),
+
+#UI for Tab 4
+    tabPanel("Historical Performance",
+             selectInput("team_round_select", "Select a Team",
+                         choices = unique(aggregate_maximum_round$Team)
+                         ),
+                        plotOutput("historical_plot")
     )
   ) 
 )

@@ -3,6 +3,7 @@ library(shiny)
 library(tidyverse)
 library(ggplot2)
 library(leaflet)
+library(lubridate)
 
 #Define server logic for shiny app
 server <- function(input, output) {
@@ -203,4 +204,51 @@ total_team_distance_traveled <- total_team_distance_traveled %>%
         y = "Miles Traveled"
       )
   })
+  
+#Code for Tab 4
+  historical_data <- read_csv("~/march-madness-predictor/data/Bio_185_March_Madness_Data.csv")
+  
+  favorite_maximum_round <- historical_data %>%
+    group_by(Favorite, Year) %>%
+    mutate(maximum_round_favorite = max(Round)) %>%
+    select(Year, Favorite, maximum_round_favorite)
+  
+  underdog_maximum_round <- historical_data %>%
+    group_by(Underdog, Year) %>%
+    mutate(maximum_round_underdog = max(Round)) %>%
+    select(Year, Underdog, maximum_round_underdog)
+  
+  aggregate_maximum_round <- full_join(favorite_maximum_round, underdog_maximum_round, by = c("Year" = "Year", "Favorite" = "Underdog"))
+  
+  aggregate_maximum_round$maximum_round_favorite[is.na(aggregate_maximum_round$maximum_round_favorite)] <- 0
+  aggregate_maximum_round$maximum_round_underdog[is.na(aggregate_maximum_round$maximum_round_underdog)] <- 0
+  
+  aggregate_maximum_round <- aggregate_maximum_round %>%
+    group_by(Year, Favorite) %>%
+    mutate(final_round = pmax(maximum_round_favorite, maximum_round_underdog)) %>%
+    rename("Team" = "Favorite") %>%
+    select(Year, Team, final_round) %>%
+    distinct() %>%
+    arrange(desc(Team)) %>%
+    mutate(Round_Reached = factor(final_round,
+                                levels = c(1, 2, 3, 4, 5, 6),
+                                labels = c("First Round", "Second Round", "Sweet Sixteen", "Elite Eight", "Final Four", "Championship Game")))
+  
+  aggregate_maximum_round$Year <- round(aggregate_maximum_round$Year, digits = 0)
+  
+  output$historical_plot <- renderPlot({
+    team_name <- input$team_round_select
+    filtered_data <- aggregate_maximum_round[aggregate_maximum_round$Team == team_name, ]
+    
+    ggplot(filtered_data, aes(x = Year, y = Round_Reached)) +
+      geom_point() +
+      scale_x_continuous(breaks = seq(min(aggregate_maximum_round$Year), max(aggregate_maximum_round$Year), by = 1)) +
+      labs(
+        title = paste("Historical Performance by", team_name),
+        x = "Year",
+        y = "Round_Reached"
+      )
+  })
 }
+      
+  

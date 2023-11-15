@@ -30,7 +30,7 @@ server <- function(input, output) {
       leaflet(data = game_total) %>%
         setView(lng = -96.25, lat = 39.5, zoom = 4) %>%
         addTiles()%>%
-        addMarkers(lat = ~Latitude, lng = ~Longitude, popup = ~game_city, label = ~popup_text)
+        addMarkers(popup = ~game_city, label = ~popup_text)
       
     } else {
       team_location_data <- team_location_data %>%

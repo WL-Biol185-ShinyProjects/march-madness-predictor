@@ -34,3 +34,5 @@ Notes from 11/8 Finished up the code for our distances traveled data for page 3 
 Notes from 11/10-12 Made a multitude of changes adding additional pages including a map of all locations for each team, a couple of data visualization plots showing a density distribution of how far each team traveled, also implemented aesthetic changes to the server and UI
 
 Notes from 11/13 Created new marker colors for the College locations so we can overlay the two maps, made an interactive chart that shows the historical performance by each team by year, implemneted the seed probability predictor into the server/UI
+
+Notes from 11/14 Created a new tab in the shiny app for historical performance by team

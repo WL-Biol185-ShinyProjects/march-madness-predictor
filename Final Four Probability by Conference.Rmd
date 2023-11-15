@@ -32,7 +32,7 @@ view(new_data)
 ```
 
 ```{r}
-write.csv(new_data, file = "conference_data.csv")
+write.csv(new_data, file = "final_four_conference_data.csv")
 ```
 
 

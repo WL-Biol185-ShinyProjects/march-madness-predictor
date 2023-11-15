@@ -32,6 +32,12 @@ view(new_data)
 ```
 
 ```{r}
+write.csv(new_data, file = "conference_data.csv")
+```
+
+
+
+```{r}
 data_count <- new_data %>%
   select(Year, Conference) %>%
   count(Conference, Year)

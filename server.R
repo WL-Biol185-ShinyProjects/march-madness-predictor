@@ -14,7 +14,7 @@ server <- function(input, output) {
   
   output$map <- renderLeaflet({
     if(input$location_type == "Game Locations") {
-      
+
         leaflet(data = game_total) %>% 
           setView(lng = -96.25, lat = 39.5, zoom = 4) %>%
           addTiles()%>%

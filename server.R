@@ -14,7 +14,7 @@ server <- function(input, output) {
   
   #Code for Tab 1
   output$map <- renderLeaflet({
-    if(input$location_type =="Game Locations") {
+    if(input$location_type == "Game Locations") {
       march_madness_data <- march_madness_data %>%
         rename(lat = `Lat for City Where Game was played`,
                lng = `Lon for City Where Game was Played`,
@@ -30,7 +30,7 @@ server <- function(input, output) {
       leaflet(data = game_total) %>%
         setView(lng = -96.25, lat = 39.5, zoom = 4) %>%
         addTiles()%>%
-        addMarkers(lat = ~Latitude, lng = ~Longitude, popup = ~game_city, label = ~popup_text)
+        addMarkers(lat = ~lat, lng = ~lng, popup = ~game_city, label = ~popup_text)
       
     } else {
       team_location_data <- team_location_data %>%

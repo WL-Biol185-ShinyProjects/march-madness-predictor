@@ -12,7 +12,7 @@ server <- function(input, output) {
   march_madness_data <- read_csv("~/march-madness-predictor/data/Bio_185_March_Madness_Data.csv")
   team_location_data <- read_csv("~/march-madness-predictor/data/Team locations.csv")
   
-#Code for Tab 1
+  #Code for Tab 1
   output$map <- renderLeaflet({
     if(input$location_type =="Game Locations") {
       march_madness_data <- march_madness_data %>%
@@ -27,10 +27,10 @@ server <- function(input, output) {
       
       game_total$popup_text <- paste0(game_total$game_city, ": ", game_total$n, " games")
       
-     leaflet(data = game_total) %>%
-       setView(lng = -96.25, lat = 39.5, zoom = 4) %>%
-       addTiles()%>%
-       addMarkers(popup = ~game_city, label = ~popup_text)
+      leaflet(data = game_total) %>%
+        setView(lng = -96.25, lat = 39.5, zoom = 4) %>%
+        addTiles()%>%
+        addMarkers(lat = ~Latitude, lng = ~Longitude, popup = ~game_city, label = ~popup_text)
       
     } else {
       team_location_data <- team_location_data %>%
@@ -53,7 +53,6 @@ server <- function(input, output) {
           icon = icon.fa)
     }
   })
-
 
 #Code for Tab 2 Part 1
 

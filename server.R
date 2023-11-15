@@ -249,6 +249,42 @@ total_team_distance_traveled <- total_team_distance_traveled %>%
         y = "Round_Reached"
       )
   })
+  
+#Code for Tab 5
+  #Read the Data 
+  march_madness_data <- read_csv("~/march-madness-predictor/data/Bio_185_March_Madness_Data.csv")
+  
+  march_madness_data <- march_madness_data %>%
+    group_by(Winner, Round) %>%
+    count(Winner)
+  
+  win_pct_data <- march_madness_data %>%
+    rename(number_of_wins = n) %>%
+    ungroup(Winner) %>%
+    mutate(total_games = sum(number_of_wins)) %>%
+    group_by(Winner) %>%
+    mutate(win_pct = number_of_wins / total_games) %>%
+    select(Winner, number_of_wins, win_pct, Round)
+  
+  win_pct_data <- win_pct_data %>%
+    mutate(Winner = as.character(Winner))
+  
+  win_pct_data <- win_pct_data %>%
+    mutate(Winner = ifelse(Winner == "0","Underdog Won","Favorite Won"))
+  
+  output$round_plot <- renderPlot({
+    round_selected <- input$round_slider
+    
+    win_pct_data %>%
+      filter(Round == round_selected) %>%
+      ggplot(mapping = aes(x = Winner, y = win_pct)) +
+      geom_bar(stat="identity") +
+      labs(
+        title = paste("Win Percentage in Round", round_selected),
+        x = "Winner",
+        y = "Win Percentage"
+      )
+  })
 }
       
   

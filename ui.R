@@ -53,6 +53,12 @@ ui <- fluidPage(
                          choices = unique(aggregate_maximum_round$Team)
                          ),
                         plotOutput("historical_plot")
+    ),
+
+#UI for Tab 5
+    tabPanel("Win Percentage by Round",
+             sliderInput("round_slider", "Select Round", min = 1, max = 6, value = 1),
+             plotOutput("round_plot")
     )
   ) 
 )

@@ -49,7 +49,7 @@ win_pct_data <- win_pct_data %>%
 
 ```{r}
 win_pct_data %>%
-  filter(Round == 4) %>%
+  filter(Round == 6) %>%
 ggplot(mapping = aes(x = Winner, y = win_pct)) +
   geom_bar(stat="identity")
 ```

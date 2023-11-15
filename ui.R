@@ -25,7 +25,7 @@ ui <- fluidPage(
               fluidRow(
                 column(10,
                       selectInput("conference", "Select Conference", 
-                                  choices = unique(final_four_conference_data$Conference)
+                                  choices = unique(new_data$Conference)
                        ),
                       tableOutput("data_table")
                 ),

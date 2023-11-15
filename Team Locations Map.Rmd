@@ -38,16 +38,6 @@ library(ggplot2)
 
 
 ```{r}
-icons <- makeAwesomeIcon(
-  icon = "home",
-  library = "ion",
-  markerColor = "red",
-  iconColor = "red"
-)
-```
-
-
-```{r}
 icon.fa <- makeAwesomeIcon(icon = 'flag', markerColor = 'orange', library='fa', iconColor = 'gray')
 ```
 

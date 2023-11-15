@@ -55,7 +55,7 @@ aggregate_maximum_round <- aggregate_maximum_round %>%
   rename("Team" = "Favorite") %>%
   select(Year, Team, final_round) %>%
   distinct() %>%
-  arrange(desc(Year), Team)
+  arrange(Team)
 ```
 
 

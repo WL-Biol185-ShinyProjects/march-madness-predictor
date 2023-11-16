@@ -1,5 +1,5 @@
 ---
-title: "Page 2 Markdown"
+title: "Page 2 Markdown Part 1"
 author: "Jonathan Molner & Diya Shreenath"
 date: "10/28/2023"
 output: html_document
@@ -37,43 +37,4 @@ write.csv(new_data, file = "final_four_conference_data.csv")
 
 
 
-```{r}
-data_count <- new_data %>%
-  select(Year, Conference) %>%
-  count(Conference, Year)
-```
-
-```{r}
-view(data_count)
-```
-
-```{r}
-data_count <- data_count %>%
-  group_by(Conference, n) %>%
-  count()
-```
-### Renaming variables here
-```{r}
-data_count <- data_count %>%
-  rename("Number of Teams Within Conference" = "n",
-         "Number of Times Occurred" = "nn")
-```
-
-```{r}
-data_count <- data_count %>%
-  mutate(prob_occurence = (`Number of Times Occurred` / 83)*100)
-```
-### How to round prob occurence if needed
-```{r}
-data_count$prob_occurence <- round(data_count$prob_occurence, digits = 0)
-```
-### How to add a percentage to prob occurence
-```{r}
-data_count$prob_occurence <- paste0(data_count$prob_occurence, "%")
-```
-
-
-```{r}
-write.csv(data_count, file = "conference_predictor.csv")
-```
 

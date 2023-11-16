@@ -45,30 +45,19 @@ server <- function(input, output) {
 #Code for Tab 2 Part 1
 
 #read the data
-final_four_teams <- read_csv("~/march-madness-predictor/data/Final Four Teams.csv")
-conference_data <- read_csv("~/march-madness-predictor/data/mach_madness_conference_list.csv")
-new_data <- read_csv("~/march-madness-predictor/data/final_four_conference_data.csv")
+conference_predictor <- read_csv("~/march-madness-predictor/data/conference_predictor.csv")
 
-  
 
 #Calculate and Display the probabilities
 filtered_data <- reactive({
-  new_data %>%
+  conference_predictor %>%
     filter(Conference == input$conference)
 })
 
 output$data_table <- renderTable({
-  data_count <- filtered_data() %>%
-    select(Year, Conference) %>%
-    count(Conference, Year) %>%
-    group_by(Conference, n) %>%
-    count() %>%
-    mutate(Probability = nn *100 / 83) %>%
-    rename("Number of Teams Within Conference" = "n", 
-           "Number of Times Occurred" = "nn") %>%
-    mutate(Probability = round(Probability, digits = 2)) %>%
-    mutate(Probability = paste0(Probability, "%"))
-  return(data_count)
+  conference_predictor <- filtered_data() %>%
+    select('Conference', 'Number of Teams Within Conference', 'Number of Times Occurred', 'prob_occurence')
+  return(conference_predictor)
   
 })
 

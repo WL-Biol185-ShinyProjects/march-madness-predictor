@@ -73,3 +73,7 @@ data_count$prob_occurence <- paste0(data_count$prob_occurence, "%")
 ```
 
 
+```{r}
+write.csv(data_count, file = "conference_predictor.csv")
+```
+

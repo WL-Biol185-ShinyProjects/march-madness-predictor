@@ -34,3 +34,5 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 march-madness-predictor.Rproj
+ui.R
+server.R

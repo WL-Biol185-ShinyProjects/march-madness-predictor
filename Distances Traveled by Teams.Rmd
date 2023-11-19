@@ -140,8 +140,19 @@ total_team_distance_traveled <- total_team_distance_traveled %>%
 total_team_distance_traveled$miles_traveled <- round(total_team_distance_traveled$miles_traveled, digits = 0)
 ```
 
+### Trying to figure out how to apply the vertical line below
+
+```{r}
+UNC_EX <- total_team_distance_traveled %>%
+  filter(Year == 2022, team_name == "UNC") %>%
+  select(miles_traveled)
+
+```
+
+
 ```{r}
 total_team_distance_traveled %>%
   ggplot(mapping = aes(x = miles_traveled)) +
-  geom_density()
+  geom_density() +
+  geom_vline(xintercept = UNC_EX$miles_traveled)
 ```

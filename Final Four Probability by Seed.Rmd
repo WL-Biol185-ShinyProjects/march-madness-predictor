@@ -69,10 +69,15 @@ seed_count$Seed <- round(seed_count$Seed, digits = 0)
 
 
 ```{r}
-seed_count %>%
+seed_count <- seed_count %>%
   filter(Seed != 0) %>%
   arrange(Seed)
 ```
+
+```{r}
+write.csv(seed_count, file = "seed_predictor.csv")
+```
+
 
 
 

@@ -70,10 +70,14 @@ aggregate_maximum_round <- aggregate_maximum_round %>%
 aggregate_maximum_round$Year <- round(aggregate_maximum_round$Year, digits = 0)
 ```
 
+```{r}
+write.csv(aggregate_maximum_round, file = "historical_performance.csv")
+```
+
 ### Graph is set. Just want to change the format from year to a date format to make the x axis of the graph discrete so we can see year by year on the x axis.
 ```{r}
 aggregate_maximum_round %>%
-  filter(Team == "UNC") %>%
+  filter(Team == "Arizona") %>%
   ggplot(mapping = aes(x = Year, y = Round_Reached)) +
   geom_point() +
   scale_x_continuous(breaks = seq(min(aggregate_maximum_round$Year), max(aggregate_maximum_round$Year), by = 1))

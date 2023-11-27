@@ -46,6 +46,10 @@ win_pct_data <- win_pct_data %>%
       mutate(Winner = ifelse(Winner == "0","Underdog Won","Favorite Won"))
 ```
 
+```{r}
+write.csv(win_pct_data, file = "win_percentage_by_round.csv")
+```
+
 
 ```{r}
 win_pct_data %>%

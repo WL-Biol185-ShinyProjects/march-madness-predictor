@@ -36,3 +36,13 @@ Notes from 11/10-12 Made a multitude of changes adding additional pages includin
 Notes from 11/13 Created new marker colors for the College locations so we can overlay the two maps, made an interactive chart that shows the historical performance by each team by year, implemneted the seed probability predictor into the server/UI
 
 Notes from 11/14 Created a new tab in the shiny app for historical performance by team
+
+Notes from break and 11/27
+
+Created all tabs within the app and connected them within server and UI, while also making sure that nothing needs to be pulled from the envriornment for the app to be run. Began working on the aesthetic look of the app to make sure everything was running smoothly and looked good. 
+
+Things left to do: 
+1. Figure out why the factor is not running correctly on the output app (it ran properly before but not anymore)
+2. Add descriptions to each pannel
+3. Edit the graph for distance traveled and include overarching aggregate distance traveled vs. win graph
+4. Include a button to download the data

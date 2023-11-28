@@ -23,10 +23,11 @@ ui <- fluidPage(
       "Tabs",
       tabPanel("About",
                fluidPage(
-                 tags$h3("About March Madness Predictor"),
-                 tags$p("Welcome to our app!"
-                   
-                 )
+                 tags$h3("About Our App!"),
+                 tags$p("Welcome to our app. As two March Madness fans we are really excited about this project"),
+                 tags$h3("Data Collection"),
+                 tags$p("We realized that March Madness Data is not available on the web. So we created our own dataset for this project using data directly from ESPN's website. The first dataset includes the last ten years of data for every game played in the tournament. It includes which team was considred the Favorite or Underdog, who the winner of each game was, what the seed was for the favorite team and for the underdog team, the city and state where the game was played, the round of each game, and the latitude and longitude data for the cities (using data from US Postal Offices)"),
+                 
                )),
        
 #Tab 1 - Game Locations & Team Locations    

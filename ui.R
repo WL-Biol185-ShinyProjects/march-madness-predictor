@@ -6,6 +6,7 @@ library(leaflet)
 library(shinythemes)
 library(lubridate)
 
+#Read the Data
 conference_data <- read_csv("~/march-madness-predictor/data/conference_predictor.csv")
 final_four_seeds <- read_csv("~/march-madness-predictor/data/seed_predictor.csv")
 historical_data <- read_csv("~/march-madness-predictor/data/historical_performance.csv")
@@ -17,26 +18,39 @@ ui <- fluidPage(
     theme = shinytheme("cerulean"),
     titlePanel("March Madness Predictor"),
     
-#set up tabs    
+#Tab 0 - About    
     navbarPage(
       "Tabs",
-       tabPanel("Leaflet Maps",
+      tabPanel("About",
+               fluidPage(
+                 tags$h3("About March Madness Predictor"),
+                 tags$p("Welcome to our app!"
+                   
+                 )
+               )),
+       
+#Tab 1 - Game Locations & Team Locations    
+      tabPanel("Game Locations & Team Locations",
+        fluidPage(
+          tags$h3("Does Where a Team is Located Have an Affect on Chances of Winning?"),
+          tags$p("This tab allows you to do some cool things!")
+        ),
           selectInput("location_type", "Select to See Either Game or Team Locations",
                       choices = c("Game Locations","Team Locations")),
         leafletOutput("map"),
           textOutput("text1")
                ),
       
-#UI for Tab 2
-tabPanel("Distances",
+#Tab 2 - Distances Traveled
+tabPanel("Distances Traveled",
                selectInput("team_select", "Select a Team That Has Made It To The Final Four In The Last 10 Years", 
                            choices = unique(distance_data$team_name)
                ),
-               plotOutput("box_chart"),
+               plotOutput("distance_plot"),
                tableOutput("data_table_distances")
       ),
 
-#UI for Tab 3
+#Tab 3 - Final Four Predictor
 tabPanel("Final Four Predictor",
          fluidRow(
            column(10,
@@ -54,7 +68,7 @@ tabPanel("Final Four Predictor",
           )
         ),
            
-#UI for Tab 4
+#Tab 4 - Historical Performance
 tabPanel("Historical Performance",
              selectInput("team_round_select", "Select a Team",
                          choices = unique(historical_data$Team)
@@ -62,7 +76,7 @@ tabPanel("Historical Performance",
              plotOutput("historical_plot")
     ),
 
-#UI for Tab 5
+#Tab 5 - Win Pecentage by Round
 tabPanel("Win Percentage by Round",
          sliderInput("round_slider", "Select Round", min = 1, max = 6, value = 1),
          plotOutput("round_plot")

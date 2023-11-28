@@ -5,13 +5,19 @@ library(ggplot2)
 library(leaflet)
 library(lubridate)
 
+#Read the Data
+game_location_name <- read_csv("~/march-madness-predictor/data/game_location_data.csv")
+team_location_data <- read_csv("~/march-madness-predictor/data/Team locations.csv")
+distance_data <- read_csv("~/march-madness-predictor/data/total_distance_traveled.csv")
+final_four_seeds <- read_csv("~/march-madness-predictor/data/seed_predictor.csv")
+conference_data <- read_csv("~/march-madness-predictor/data/conference_predictor.csv")
+historical_data <- read_csv("~/march-madness-predictor/data/historical_performance.csv")
+win_percentage_by_round <- read_csv("~/march-madness-predictor/data/win_percentage_by_round.csv")
+
 #Define server logic for shiny app
 server <- function(input, output) {
-  
-  #Read the Data
-  game_location_name <- read_csv("~/march-madness-predictor/data/game_location_data.csv")
-  team_location_data <- read_csv("~/march-madness-predictor/data/Team locations.csv")
-  
+
+  #Tab 1 - Game Locations & Team Locations 
   output$map <- renderLeaflet({
     if(input$location_type == "Game Locations") {
 
@@ -42,10 +48,7 @@ server <- function(input, output) {
     }
   })
   
-  #Code for Tab 2
-  
-  distance_data <- read_csv("~/march-madness-predictor/data/total_distance_traveled.csv")
-  
+  #Tab 2 - Distances Traveled
   distance_data <- distance_data %>%
     select('team_name', 'Year', 'kilometers_traveled', 'miles_traveled')
     
@@ -57,27 +60,20 @@ server <- function(input, output) {
     return(filtered_data)
   })
   
-  #Display a box chart for the total distance traveled
-  output$box_chart <- renderPlot({
+  #Display graph for distances traveled
+  output$distance_plot <- renderPlot({
     team_name <- input$team_select
-    filtered_data <- distance_data[distance_data$team_name == team_name, ]
+    team_data <- total_team_distance_traveled[distance_data$team_name == team_name, ]
     
-    ggplot(filtered_data, aes(x = Year, y = miles_traveled)) +
-      geom_boxplot(fill = "lightblue", color = "blue") +
-      labs(
-        title = paste("Total Distance Traveled by", team_name),
-        x = "Year",
-        y = "Miles Traveled"
-      )
+    ggplot(data = total_team_distance_traveled, aes(x = miles_traveled)) +
+      geom_density() +
+      geom_vline(aes(xintercept = miles_traveled, color = factor(Year)), data = team_data) +
+      labs(title = paste("Miles Traveled by", team_name, "for Each Year They Made the Final Four"),
+           x = "Miles Traveled",
+           color = "Year")
   })
   
- 
-  #Code for Tab 3 Part 1
-  
-  #read the data
-  conference_data <- read_csv("~/march-madness-predictor/data/conference_predictor.csv")
-  
-  
+  #Tab 3 - Final Four Predictor
   #Calculate and Display the probabilities
   conference_predict <- reactive({
     conference_data %>%
@@ -91,8 +87,6 @@ server <- function(input, output) {
     return(selected_data)
     
   })
-  
-  final_four_seeds <- read_csv("~/march-madness-predictor/data/seed_predictor.csv")
   
   seed_count <- reactive({
     final_four_seeds %>%
@@ -108,9 +102,7 @@ server <- function(input, output) {
     
   })
   
-  #Code for Tab 4
-  historical_data <- read_csv("~/march-madness-predictor/data/historical_performance.csv")
-  
+  #Tab 4 - Historical Performance
   output$historical_plot <- renderPlot({
     team_name <- input$team_round_select
     filtered_data <- historical_data[historical_data$Team == team_name, ]
@@ -125,9 +117,7 @@ server <- function(input, output) {
       )
   })
   
-  #Code for Tab 5
-  win_percentage_by_round <- read_csv("~/march-madness-predictor/data/win_percentage_by_round.csv")
-  
+  #Tab 5 - Win Pecentage by Round
   output$round_plot <- renderPlot({
     round_selected <- input$round_slider
     

@@ -1,0 +1,73 @@
+---
+title: "Tab 2 (Part 2) - Distance Traveled Graphs"
+author: "Jonathan Molner & Diya Shreenath"
+date: "11/28/2023"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+distance_data <- read_csv("~/march-madness-predictor/data/Bio 185 March Madness Data Lats.csv")
+```
+
+
+```{r}
+haversine <- function(long1, lat1, long2, lat2, round = 3) {
+  # convert to radians
+  long1 = long1 * pi / 180
+  lat1  = lat1  * pi / 180
+  long2 = long2 * pi / 180
+  lat2  = lat2  * pi / 180
+  
+  R = 6371 # Earth mean radius in km
+  
+  a = sin((lat2 - lat1)/2)^2 + cos(lat1) * cos(lat2) * sin((long2 - long1)/2)^2
+  d = R * 2 * asin(sqrt(a))
+  
+  return( round(d,round) ) # distance in km
+}
+```
+
+
+```{r}
+distance_data <- distance_data %>%
+  mutate(distance_favorite = haversine(College_lon, College_lat, `Lon for City Where Game was Played`, `Lat for City Where Game was played`, round = 0))
+```
+
+
+```{r}
+distance_data <- distance_data %>%
+  mutate(distance_underdog = haversine(Underdog_lon, Underdog_lat, `Lon for City Where Game was Played`, `Lat for City Where Game was played`, round = 0))
+```
+
+
+```{r}
+distance_data <- distance_data %>%
+  select(Winner, distance_favorite, distance_underdog, Round)
+```
+
+```{r}
+underdog_distance <- distance_data %>%
+  select(Winner, distance_underdog, Round)
+```
+
+```{r}
+favorite_distance <- distance_data %>%
+  select(Winner, distance_favorite, Round)
+```
+
+```{r}
+favorite_distance %>%
+  ggplot(mapping = aes(x = distance_favorite, y = Winner)) +
+  geom_point() +
+  geom_smooth(method='lm')
+```
+

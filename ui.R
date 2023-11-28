@@ -5,6 +5,7 @@ library(ggplot2)
 library(leaflet)
 library(shinythemes)
 library(lubridate)
+options(scipen = 999)
 
 #Read the Data
 conference_data <- read_csv("~/march-madness-predictor/data/conference_predictor.csv")

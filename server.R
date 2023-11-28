@@ -4,6 +4,7 @@ library(tidyverse)
 library(ggplot2)
 library(leaflet)
 library(lubridate)
+options(scipen = 999)
 
 #Read the Data
 game_location_name <- read_csv("~/march-madness-predictor/data/game_location_data.csv")

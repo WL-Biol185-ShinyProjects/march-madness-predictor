@@ -33,7 +33,7 @@ ui <- fluidPage(
 #Tab 1 - Game Locations & Team Locations    
       tabPanel("Game Locations & Team Locations",
         fluidPage(
-          tags$h3("Does Where a Team is Located Have an Affect on Chances of Winning?"),
+          tags$h3("Where are Games Being Played & Where are Teams Located?"),
           tags$p("This tab allows you to do some cool things!")
         ),
           selectInput("location_type", "Select to See Either Game or Team Locations",

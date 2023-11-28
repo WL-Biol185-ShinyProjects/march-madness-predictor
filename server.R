@@ -63,9 +63,9 @@ server <- function(input, output) {
   #Display graph for distances traveled
   output$distance_plot <- renderPlot({
     team_name <- input$team_select
-    team_data <- total_team_distance_traveled[distance_data$team_name == team_name, ]
+    team_data <- distance_data[distance_data$team_name == team_name, ]
     
-    ggplot(data = total_team_distance_traveled, aes(x = miles_traveled)) +
+    ggplot(data = distance_data, aes(x = miles_traveled)) +
       geom_density() +
       geom_vline(aes(xintercept = miles_traveled, color = factor(Year)), data = team_data) +
       labs(title = paste("Miles Traveled by", team_name, "for Each Year They Made the Final Four"),

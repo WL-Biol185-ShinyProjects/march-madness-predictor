@@ -117,7 +117,7 @@ server <- function(input, output) {
       )
   })
   
-  #Tab 5 - Win Pecentage by Round
+  #Tab 5 - Win Percentage by Round
   output$round_plot <- renderPlot({
     round_selected <- input$round_slider
     

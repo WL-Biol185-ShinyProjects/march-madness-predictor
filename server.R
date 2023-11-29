@@ -20,6 +20,16 @@ aggregate_distance_data <- read_csv("~/march-madness-predictor/data/distance_tra
 server <- function(input, output) {
   
   #Tab 0 - Download Dataset
+  march_madness_data <- read_csv("~/march-madness-predictor/data/march_madness_data_ten_years.csv")
+  
+  output$download_about_data <- downloadHandler(
+    filename = function() {
+      paste("march_madness_data", ".csv")
+    },
+    content = function(file) {
+      write.csv(march_madness_data, file)
+    }
+  ) 
   
   #Tab 1 - Game Locations & Team Locations 
   output$map <- renderLeaflet({

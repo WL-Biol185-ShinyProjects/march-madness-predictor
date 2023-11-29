@@ -32,7 +32,7 @@ ui <- fluidPage(
                  tags$br(),
                  tags$p("One important thing to note is that 2020 data for the March Madness Tournament does not exist because the tournament was not played that year due to COVID-19."),
                ),
-      downloadButton("download_about_data", "Download the Dataset", href = "~/march-madness-predictor/data/march_madness_data_2013-2023.xlsx", class = "btn-success"),
+      downloadButton("download_about_data", "Download the Dataset"),
     ),
        
 #Tab 1 - Game Locations & Team Locations    

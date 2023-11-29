@@ -17,7 +17,7 @@ win_percentage_by_round <- read_csv("~/march-madness-predictor/data/win_percenta
 
 #Define server logic for shiny app
 server <- function(input, output) {
-
+  
   #Tab 1 - Game Locations & Team Locations 
   output$map <- renderLeaflet({
     if(input$location_type == "Game Locations") {

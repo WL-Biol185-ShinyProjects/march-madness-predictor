@@ -106,6 +106,12 @@ server <- function(input, output) {
   })
   
   #Tab 4 - Historical Performance
+  
+  historical_data <- historical_data %>%
+    mutate(Round_Reached = factor(final_round,
+                                  levels = c(1, 2, 3, 4, 5, 6),
+                                  labels = c("First Round", "Second Round", "Sweet Sixteen", "Elite Eight", "Final Four", "Championship Game")))
+  
   output$historical_plot <- renderPlot({
     team_name <- input$team_round_select
     filtered_data <- historical_data[historical_data$Team == team_name, ]

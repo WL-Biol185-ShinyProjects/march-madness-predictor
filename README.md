@@ -46,3 +46,11 @@ Things left to do:
 2. Add descriptions to each pannel
 3. Edit the graph for distance traveled and include overarching aggregate distance traveled vs. win graph
 4. Include a button to download the data
+
+Notes as of 11/28
+
+What is left:
+1. Figure out button for download data
+2. Work on visual aesthetics of the app
+
+Note: The points that have been removed from 11/27 to 11/28 have been completed

@@ -53,7 +53,7 @@ server <- function(input, output) {
   
   #Tab 2 - Distances Traveled
   distance_data <- distance_data %>%
-    select('team_name', 'Year', 'kilometers_traveled', 'miles_traveled')
+    select('team_name', 'Year', 'miles_traveled')
     
   
   #display data table

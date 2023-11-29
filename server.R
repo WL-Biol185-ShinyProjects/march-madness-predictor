@@ -126,7 +126,7 @@ server <- function(input, output) {
     filtered_data <- historical_data[historical_data$Team == team_name, ]
     
     ggplot(filtered_data, aes(x = Year, y = Round_Reached)) +
-      geom_point() +
+      geom_point(color = "darkblue") +
       scale_x_continuous(breaks = seq(min(historical_data$Year), max(historical_data$Year), by = 1)) +
       labs(
         title = paste("Historical Performance by", team_name),
@@ -142,7 +142,7 @@ server <- function(input, output) {
     win_percentage_by_round %>%
       filter(Round == round_selected) %>%
       ggplot(mapping = aes(x = Winner, y = win_pct)) +
-      geom_bar(stat="identity") +
+      geom_bar(stat="identity", fill = "skyblue") +
       labs(
         title = paste("Win Percentage in Round", round_selected),
         x = "Winner",

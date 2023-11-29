@@ -65,6 +65,10 @@ favorite_distance <- distance_data %>%
 ```
 
 ```{r}
+write.csv(favorite_distance, file = "distance_traveled_v_winning.csv")
+```
+
+```{r}
 favorite_distance %>%
   ggplot(mapping = aes(x = distance_favorite, y = Winner)) +
   geom_point() +

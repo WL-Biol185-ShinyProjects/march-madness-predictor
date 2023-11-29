@@ -14,6 +14,7 @@ final_four_seeds <- read_csv("~/march-madness-predictor/data/seed_predictor.csv"
 conference_data <- read_csv("~/march-madness-predictor/data/conference_predictor.csv")
 historical_data <- read_csv("~/march-madness-predictor/data/historical_performance.csv")
 win_percentage_by_round <- read_csv("~/march-madness-predictor/data/win_percentage_by_round.csv")
+aggregate_distance_data <- read_csv("~/march-madness-predictor/data/distance_traveled_v_winning.csv")
 
 #Define server logic for shiny app
 server <- function(input, output) {
@@ -75,6 +76,14 @@ server <- function(input, output) {
            x = "Miles Traveled",
            color = "Year")
   })
+    #Display graph for all distances
+    output$aggregate_distance_plot <- renderPlot({
+      
+      ggplot(data = aggregate_distance_data, mapping = aes(x = distance_favorite, y = Winner)) +
+        geom_point() +
+        geom_smooth(method='lm') +
+        labs(title = "Relationship Between Distance Traveled and Winning", x = "Miles Traveled", y = "Win")
+  })
   
   #Tab 3 - Final Four Predictor
   #Calculate and Display the probabilities
@@ -122,7 +131,7 @@ server <- function(input, output) {
       labs(
         title = paste("Historical Performance by", team_name),
         x = "Year",
-        y = "Round_Reached"
+        y = "Round Reached"
       )
   })
   

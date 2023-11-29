@@ -8,12 +8,12 @@ library(lubridate)
 options(scipen = 999)
 
 #Read the Data
-conference_data <- read_csv("~/march-madness-predictor/data/conference_predictor.csv")
-final_four_seeds <- read_csv("~/march-madness-predictor/data/seed_predictor.csv")
-historical_data <- read_csv("~/march-madness-predictor/data/historical_performance.csv")
-win_percentage_by_round <- read_csv("~/march-madness-predictor/data/win_percentage_by_round.csv")
-distance_data <- read_csv("~/march-madness-predictor/data/total_distance_traveled.csv")
-aggregate_distance_data <- read_csv("~/march-madness-predictor/data/distance_traveled_v_winning.csv")
+conference_data <- read_csv("data/conference_predictor.csv")
+final_four_seeds <- read_csv("data/seed_predictor.csv")
+historical_data <- read_csv("data/historical_performance.csv")
+win_percentage_by_round <- read_csv("data/win_percentage_by_round.csv")
+distance_data <- read_csv("data/total_distance_traveled.csv")
+aggregate_distance_data <- read_csv("data/distance_traveled_v_winning.csv")
 
 #Define UI for the shiny app
 ui <- fluidPage(

@@ -7,20 +7,20 @@ library(lubridate)
 options(scipen = 999)
 
 #Read the Data
-game_location_name <- read_csv("~/march-madness-predictor/data/game_location_data.csv")
-team_location_data <- read_csv("~/march-madness-predictor/data/Team locations.csv")
-distance_data <- read_csv("~/march-madness-predictor/data/total_distance_traveled.csv")
-final_four_seeds <- read_csv("~/march-madness-predictor/data/seed_predictor.csv")
-conference_data <- read_csv("~/march-madness-predictor/data/conference_predictor.csv")
-historical_data <- read_csv("~/march-madness-predictor/data/historical_performance.csv")
-win_percentage_by_round <- read_csv("~/march-madness-predictor/data/win_percentage_by_round.csv")
-aggregate_distance_data <- read_csv("~/march-madness-predictor/data/distance_traveled_v_winning.csv")
+game_location_name <- read_csv("data/game_location_data.csv")
+team_location_data <- read_csv("data/Team locations.csv")
+distance_data <- read_csv("data/total_distance_traveled.csv")
+final_four_seeds <- read_csv("data/seed_predictor.csv")
+conference_data <- read_csv("data/conference_predictor.csv")
+historical_data <- read_csv("data/historical_performance.csv")
+win_percentage_by_round <- read_csv("data/win_percentage_by_round.csv")
+aggregate_distance_data <- read_csv("data/distance_traveled_v_winning.csv")
 
 #Define server logic for shiny app
 server <- function(input, output) {
   
   #Tab 0 - Download Dataset
-  march_madness_data <- read_csv("~/march-madness-predictor/data/march_madness_data_ten_years.csv")
+  march_madness_data <- read_csv("data/march_madness_data_ten_years.csv")
   
   output$download_about_data <- downloadHandler(
     filename = function() {

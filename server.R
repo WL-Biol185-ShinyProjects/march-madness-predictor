@@ -62,7 +62,7 @@ server <- function(input, output) {
     team_name <- input$team_select
     filtered_data <- distance_data[distance_data$team_name == team_name, ]
     return(filtered_data)
-  })
+  }, digits = 0)
   
   #Display graph for distances traveled
   output$distance_plot <- renderPlot({
@@ -98,7 +98,7 @@ server <- function(input, output) {
       rename(Probability = prob_occurence)
     return(selected_data)
     
-  })
+  }, digits = 0)
   
   seed_count <- reactive({
     final_four_seeds %>%
@@ -112,7 +112,7 @@ server <- function(input, output) {
       rename(Probability = prob_occurence)
     return(data)
     
-  })
+  }, digits = 0)
   
   #Tab 4 - Historical Performance
   

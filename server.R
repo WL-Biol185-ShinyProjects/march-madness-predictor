@@ -143,6 +143,7 @@ server <- function(input, output) {
       filter(Round == round_selected) %>%
       ggplot(mapping = aes(x = Winner, y = win_pct)) +
       geom_bar(stat="identity", fill = "skyblue") +
+      geom_text(aes(label = win_pct), vjust = 1.6, color = "black", size = 7) +
       labs(
         title = paste("Win Percentage in Round", round_selected),
         x = "Winner",

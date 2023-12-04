@@ -54,3 +54,7 @@ What is left:
 2. Work on visual aesthetics of the app
 
 Note: The points that have been removed from 11/27 to 11/28 have been completed
+
+Notes as of 11/29
+
+Figured out the download button and majority of aesthetic changes. Will need to finalize last changes

@@ -89,10 +89,9 @@ server <- function(input, output) {
     #Display graph for all distances
     output$aggregate_distance_plot <- renderPlot({
       
-      ggplot(data = aggregate_distance_data, mapping = aes(x = distance_favorite, y = Winner)) +
-        geom_point() +
-        geom_smooth(method='lm') +
-        labs(title = "Relationship Between Distance Traveled and Winning", x = "Miles Traveled", y = "Win")
+      ggplot(data = aggregate_distance_data, mapping = aes(x = Winner, y = distance_favorite)) +
+        geom_boxplot() +
+        labs(title = "Relationship Between Distance Traveled and Winning", x = "Winner", y = "Miles Traveled")
   })
   
   #Tab 3 - Final Four Predictor

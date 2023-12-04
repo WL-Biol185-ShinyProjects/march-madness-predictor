@@ -47,11 +47,6 @@ win_pct_data <- win_pct_data %>%
 ```
 
 ```{r}
-win_pct_data$win_pct <- round(win_pct_data$win_pct, digits = 2)
-```
-
-
-```{r}
 write.csv(win_pct_data, file = "win_percentage_by_round.csv")
 ```
 
@@ -61,7 +56,7 @@ win_pct_data %>%
   filter(Round == 6) %>%
 ggplot(mapping = aes(x = Winner, y = win_pct)) +
   geom_bar(stat="identity") +
-  geom_text(aes(label = win_pct), vjust = 1.6, color = "white", size = 7)
+  geom_text("identity")
 ```
 
 ### Might need to implement the round info but we will cross that bridge later if needed

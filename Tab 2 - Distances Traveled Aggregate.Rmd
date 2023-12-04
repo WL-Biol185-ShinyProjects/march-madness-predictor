@@ -65,13 +65,19 @@ favorite_distance <- distance_data %>%
 ```
 
 ```{r}
+favorite_distance <- favorite_distance %>%
+  mutate(Winner = as.character(Winner)) %>%
+  mutate(Winner = recode(Winner, '0' = 'Loser', '1' = 'Winner'))
+```
+
+
+```{r}
 write.csv(favorite_distance, file = "distance_traveled_v_winning.csv")
 ```
 
 ```{r}
 favorite_distance %>%
-  ggplot(mapping = aes(x = distance_favorite, y = Winner)) +
-  geom_point() +
-  geom_smooth(method='lm')
+  ggplot(mapping = aes(x = Winner, y = distance_favorite)) +
+  geom_boxplot()
 ```
 

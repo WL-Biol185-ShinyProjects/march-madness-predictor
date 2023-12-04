@@ -82,6 +82,7 @@ server <- function(input, output) {
     ggplot(data = distance_data, aes(x = miles_traveled)) +
       geom_density() +
       geom_vline(aes(xintercept = miles_traveled, color = factor(Year)), data = team_data) +
+      scale_color_manual(values = c("2013" = "red", "2014" = "cyan", "2015" = "darkblue", "2016" = "orange", "2017" = "yellow", "2018" = "green", "2019" = "skyblue", "2021" = "purple", "2022" = "pink", "2023" = "brown")) +
       labs(title = paste("Miles Traveled by", team_name, "for Each Year They Made the Final Four"),
            x = "Miles Traveled",
            color = "Year")

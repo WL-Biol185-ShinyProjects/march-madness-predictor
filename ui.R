@@ -45,7 +45,9 @@ ui <- fluidPage(
                       choices = c("Game Locations","Team Locations")),
         leafletOutput("map"),
           tags$h3("Our Takeaways"),
-          tags$p("The main takeaway on this map is that most teams that have made the tournament are located on the eastern half of the U.S., predominantly the southeast, east coast, and Midwest. Similarly, most games that are being played also are primarily on the eastern half of the U.S. While these maps only give viewers an understanding on where teams and games are located, we will later explore how location matters for these teams and whether traveling a long distance has an impact on winning a game.")
+          tags$p("The main takeaway on this map is that most teams that have made the tournament are located on the eastern half of the U.S., predominantly the southeast, east coast, and Midwest. Similarly, most games that are being played also are primarily on the eastern half of the U.S. While these maps only give viewers an understanding on where teams and games are located, we will later explore how location matters for these teams and whether traveling a long distance has an impact on winning a game."),
+          tags$br(),
+          tags$p("Important Note: In 2021, there were an additional 63 games played in Indianapolis due to COVID-19 still affecting the tournament. All games were played in this location that year.")
                ),
       
 #Tab 2 - Distances Traveled

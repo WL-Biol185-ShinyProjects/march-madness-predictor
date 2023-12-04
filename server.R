@@ -38,7 +38,7 @@ server <- function(input, output) {
         leaflet(data = game_location_name) %>% 
           setView(lng = -96.25, lat = 39.5, zoom = 4) %>%
           addTiles()%>%
-          addMarkers(popup = ~game_city, label = ~popup_text)
+        addCircleMarkers(radius = ~n, label = ~popup_text)
       
     } else {
       team_location_data <- team_location_data %>%

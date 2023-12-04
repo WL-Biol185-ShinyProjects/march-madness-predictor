@@ -58,3 +58,7 @@ Note: The points that have been removed from 11/27 to 11/28 have been completed
 Notes as of 11/29
 
 Figured out the download button and majority of aesthetic changes. Will need to finalize last changes
+
+Notes as of 12/4
+
+Recieved comments from Professor Whitworth... made changes to address comments

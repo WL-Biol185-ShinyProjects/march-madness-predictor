@@ -115,7 +115,6 @@ tabPanel("Win Percentage by Round",
            tags$h3("How Often Does the “Favorite” Actually Win?"),
            tags$p("Use the slider to pick a different round of the March Madness Tournament and watch how the Favorite Won percentage and Underdog Won percentage change on each round.")
          ),
-         sliderInput("round_slider", "Select Round", min = 1, max = 6, value = 1),
          plotOutput("round_plot"),
          tags$h3("Our Takeaways"),
          tags$p("Typically, March Madness pickers will choose the favorites to win on a given round, but is this always the best choice? As we can see in round 1, the favorite wins roughly 75% of the time, and as we progress all the way to round 4 (the Elite Eight), the odds of the favorite winning a game dwindles to a 50-50 split. This dramatic change in the probability of the favorite winning is primarily due to the level of play shifting as the tournament progresses. As we saw earlier most teams that have made the Final Four (round 5) in the past are high seeds (seeds 1-4). From round to round each of these teams typically must play a better seed as the tournament progresses. Therefore, as the Elite Eight is reached, the difference and level of play between two teams is small as compared to rounds 1, 2 and 3. "),

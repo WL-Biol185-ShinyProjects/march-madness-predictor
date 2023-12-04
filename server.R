@@ -146,15 +146,12 @@ server <- function(input, output) {
   
   #Tab 5 - Win Percentage by Round
   output$round_plot <- renderPlot({
-    round_selected <- input$round_slider
     
     win_percentage_by_round %>%
-      filter(Round == round_selected) %>%
-      ggplot(mapping = aes(x = Winner, y = win_pct)) +
-      geom_bar(stat="identity", fill = "skyblue") +
-      geom_text(aes(label = win_pct), vjust = 1.6, color = "black", size = 7) +
+      ggplot(mapping = aes(x = Round, y = win_pct, fill = Winner)) +
+      geom_col() +
       labs(
-        title = paste("Win Percentage in Round", round_selected),
+        title = paste("Win Percentage in Round"),
         x = "Winner",
         y = "Win Percentage"
       )

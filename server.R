@@ -135,7 +135,7 @@ server <- function(input, output) {
     filtered_data <- historical_data[historical_data$Team == team_name, ]
     
     ggplot(filtered_data, aes(x = Year, y = Round_Reached)) +
-      geom_point(color = "darkblue") +
+      geom_tile(color = "skyblue") +
       scale_x_continuous(breaks = seq(min(historical_data$Year), max(historical_data$Year), by = 1)) +
       labs(
         title = paste("Historical Performance by", team_name),

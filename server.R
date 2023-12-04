@@ -103,7 +103,7 @@ server <- function(input, output) {
   
   output$data_table <- renderTable({
     selected_data <- conference_predict() %>%
-      select('Conference', 'Number of Teams Within Conference', 'Number of Times Occurred', 'prob_occurence') %>%
+      select('Conference', 'Number of Teams from the Conference in the Final Four', 'Number of Times Occurred', 'prob_occurence') %>%
       rename(Probability = prob_occurence)
     return(selected_data)
     
@@ -117,7 +117,7 @@ server <- function(input, output) {
   
   output$data_table_seed <- renderTable({
     data <- seed_count() %>%
-      select(Seed, `Number of Teams Of Given Seed`, `Number of Times Occurred`, prob_occurence) %>%
+      select(Seed, `Number of Teams Of Given Seed in the Final Four`, `Number of Times Occurred`, prob_occurence) %>%
       rename(Probability = prob_occurence)
     return(data)
     

@@ -42,7 +42,7 @@ seed_count <- seed_count %>%
 
 ```{r}
 seed_count <- seed_count %>%
-rename("Number of Teams Of Given Seed" = "n",
+rename("Number of Teams Of Given Seed in the Final Four" = "n",
          "Number of Times Occurred" = "nn")
 ```
 

@@ -36,7 +36,7 @@ new_data <- new_data %>%
 ### Renaming variables here
 ```{r}
 new_data <- new_data %>%
-  rename("Number of Teams Within Conference" = "n",
+  rename("Number of Teams from the Conference in the Final Four" = "n",
          "Number of Times Occurred" = "nn")
 ```
 

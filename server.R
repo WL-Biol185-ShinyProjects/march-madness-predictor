@@ -151,8 +151,8 @@ server <- function(input, output) {
       ggplot(mapping = aes(x = Round, y = win_pct, fill = Winner)) +
       geom_col() +
       labs(
-        title = paste("Win Percentage in Round"),
-        x = "Winner",
+        title = paste("Win Percentage by Round"),
+        x = "Round",
         y = "Win Percentage"
       )
   })

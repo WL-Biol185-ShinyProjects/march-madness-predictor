@@ -25,9 +25,6 @@ Notes from 11/5 Added extra data to lattitude longitude data table to find dista
 Notes from 11/6 Finished up code for page to find the total distances traveled by each of the teams for every team in every year of the data set (regardless if a team was a favorite or underdog)
 
 Note: we are planning to join our finished table to the final four data set to filter out the distances traveled among final four teams then we will implement a slider bar to find the distances traveled among final four teams (teams on the west coast probably travel more)
-        
-#conditionalPanel - to make an optional pane on the sam page as something else in the UI
-
 
 Notes from 11/8 Finished up the code for our distances traveled data for page 3 and will begin implementing how to include the page in our ui and server. Also added an extra flair for our page 2 (Final Four) page by adding a probability predictor for a given seed (and the quantity of a given seed) to reach the final four.
 
@@ -61,4 +58,4 @@ Figured out the download button and majority of aesthetic changes. Will need to 
 
 Notes as of 12/4
 
-Recieved comments from Professor Whitworth... made changes to address comments
+Received comments from Professor Whitworth... made changes to address comments

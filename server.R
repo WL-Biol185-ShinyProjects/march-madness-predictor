@@ -146,11 +146,17 @@ server <- function(input, output) {
   })
   
   #Tab 5 - Win Percentage by Round
+  win_percentage_by_round <- win_percentage_by_round %>%
+    mutate(Winner = factor(Winner,
+                           levels = c("Underdog Won", "Favorite Won"),
+                           labels = c("Underdog Won", "Favorite Won")))
+  
   output$round_plot <- renderPlot({
     
     win_percentage_by_round %>%
       ggplot(mapping = aes(x = Round, y = win_pct, fill = Winner)) +
       geom_col() +
+      scale_fill_manual(values = c("skyblue", "darkblue")) +
       labs(
         title = paste("Win Percentage by Round"),
         x = "Round",

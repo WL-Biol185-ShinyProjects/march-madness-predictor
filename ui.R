@@ -102,7 +102,7 @@ tabPanel("Historical Performance",
            tags$p("This tab allows you to view how each team over the past ten years has performed in the March Madness Tournament for every year they made it. Select different teams and compare their historical performance over the ten years.")
          ),
              selectInput("team_round_select", "Select a Team",
-                         choices = unique(historical_data$Team)
+                         choices = unique(historical_data$Team),
              ),
              plotOutput("historical_plot"),
               tags$h3("Our Takeaways"),
@@ -113,7 +113,7 @@ tabPanel("Historical Performance",
 tabPanel("Win Percentage by Round",
          fluidPage(
            tags$h3("How Often Does the “Favorite” Actually Win?"),
-           tags$p("Use the slider to pick a different round of the March Madness Tournament and watch how the Favorite Won percentage and Underdog Won percentage change on each round.")
+           tags$p("This page shows a stacked bar chart that allows you to view the favorite win percentage vs. the underdog win percentage in each round of the March Madness Tournament.")
          ),
          plotOutput("round_plot"),
          tags$h3("Our Takeaways"),

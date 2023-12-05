@@ -1,23 +1,17 @@
 ---
-title: "Tab 2 (Part 2) - Distance Traveled Graphs"
+title: "Tab 2 - Distances Traveled Aggregate"
 author: "Jonathan Molner & Diya Shreenath"
 date: "11/28/2023"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 ```{r}
 library(tidyverse)
 ```
 
-
 ```{r}
 distance_data <- read_csv("~/march-madness-predictor/data/Bio 185 March Madness Data Lats.csv")
 ```
-
 
 ```{r}
 haversine <- function(long1, lat1, long2, lat2, round = 3) {
@@ -36,18 +30,15 @@ haversine <- function(long1, lat1, long2, lat2, round = 3) {
 }
 ```
 
-
 ```{r}
 distance_data <- distance_data %>%
   mutate(distance_favorite = haversine(College_lon, College_lat, `Lon for City Where Game was Played`, `Lat for City Where Game was played`, round = 0))
 ```
 
-
 ```{r}
 distance_data <- distance_data %>%
   mutate(distance_underdog = haversine(Underdog_lon, Underdog_lat, `Lon for City Where Game was Played`, `Lat for City Where Game was played`, round = 0))
 ```
-
 
 ```{r}
 distance_data <- distance_data %>%
@@ -69,7 +60,6 @@ favorite_distance <- favorite_distance %>%
   mutate(Winner = as.character(Winner)) %>%
   mutate(Winner = recode(Winner, '0' = 'Loser', '1' = 'Winner'))
 ```
-
 
 ```{r}
 write.csv(favorite_distance, file = "distance_traveled_v_winning.csv")

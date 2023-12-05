@@ -1,31 +1,18 @@
 ---
-title: "Page 3 (Distances)"
+title: "Tab 2 - Distances Traveled"
 author: "Jonathan Molner & Diya Shreenath"
 date: "11/1/2023"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-
 ```{r}
 library(tidyverse)
 ```
-
 
 ```{r}
 distance_data <- read_csv("~/march-madness-predictor/data/Bio 185 March Madness Data Lats.csv")
 final_four_teams <- read_csv("~/march-madness-predictor/data/Final Four Teams.csv")
 ```
-
 
 ```{r}
 haversine <- function(long1, lat1, long2, lat2, round = 3) {
@@ -44,18 +31,15 @@ haversine <- function(long1, lat1, long2, lat2, round = 3) {
 }
 ```
 
-
 ```{r}
 distance_data <- distance_data %>%
   mutate(distance_favorite = haversine(College_lon, College_lat, `Lon for City Where Game was Played`, `Lat for City Where Game was played`, round = 0))
 ```
 
-
 ```{r}
 distance_data <- distance_data %>%
   mutate(distance_underdog = haversine(Underdog_lon, Underdog_lat, `Lon for City Where Game was Played`, `Lat for City Where Game was played`, round = 0))
 ```
-
 
 ```{r}
 distance_data <- distance_data %>%
@@ -102,7 +86,6 @@ total_team_distance_traveled$total_distance_favorite[is.na(total_team_distance_t
 total_team_distance_traveled$total_team_travel[is.na(total_team_distance_traveled$total_team_travel)] <- 0
 ```
 
-
 ```{r}
 total_team_distance_traveled <- total_team_distance_traveled %>%
   group_by(team_name, Year) %>%
@@ -113,10 +96,13 @@ total_team_distance_traveled <- total_team_distance_traveled %>%
 total_team_distance_traveled %>%
   select(Year, team_name, kilometers_traveled,)
 ```
+
 #created 750 rows because for each team who has distance data as a favorite and an underdog shows up with 3 entries in the original table because data for underdog and favorite automatically means data for total distance travelened
+
 ```{r}
 total_team_distance_traveled <- unique(total_team_distance_traveled[, c("team_name", "Year", "kilometers_traveled")])
 ```
+
 #the new dataset has 332 rows after filtering out duplicates
 
 
@@ -128,8 +114,6 @@ total_team_distance_traveled
 total_team_distance_traveled <- total_team_distance_traveled %>%
   inner_join(final_four_teams, by = c("Year" = "Year", "team_name" = "Team"))
 ```
-
-
 
 ```{r}
 total_team_distance_traveled <- total_team_distance_traveled %>%
@@ -145,20 +129,15 @@ total_team_distance_traveled <- total_team_distance_traveled %>%
   arrange(team_name)
 ```
 
-
 ```{r}
 write.csv(total_team_distance_traveled, file = "total_distance_traveled.csv")
 ```
-
-### Trying to figure out how to apply the vertical line below
 
 ```{r}
 UNC_EX <- total_team_distance_traveled %>%
   filter(team_name == "UNC") %>%
   select(miles_traveled)
-
 ```
-
 
 ```{r}
 total_team_distance_traveled %>%

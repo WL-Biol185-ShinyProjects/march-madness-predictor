@@ -1,17 +1,9 @@
 ---
-title: "Data Manipulation March Madness"
-author: "Jonathan Molner"
+title: "Tab 1 - Game Locations"
+author: "Jonathan Molner & Diya Shreenath"
 date: "10/25/2023"
 output: html_document
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
 
 ```{r}
 library(tidyverse)
@@ -20,7 +12,6 @@ library(tidyverse)
 ```{r}
 march_madness_data <- read_csv("~/march-madness-predictor/data/Bio_185_March_Madness_Data.csv")
 ```
-
 
 ```{r}
 view(march_madness_data)
@@ -35,7 +26,6 @@ march_madness_data <- march_madness_data %>%
          game_state = `State Where Game was Played`)
 ```
 
-
 ```{r}
 game_total <- march_madness_data %>%
   count(lat, lng, game_city)
@@ -49,30 +39,22 @@ view(game_total)
 game_total$popup_text <- paste0(game_total$game_city, ": ", game_total$n, " games")
 ```
 
-
-
 ```{r}
 library(leaflet)
 library(ggplot2)
 ```
 
+#Write the CSV
 ```{r}
 write.csv(game_total, file = "game_location_data.csv")
 ```
-
 
 ```{r}
 leaflet(data = game_total) %>% 
   setView(lng = -96.25, lat = 39.5, zoom = 4) %>%
   addTiles()%>%
   addCircleMarkers(radius = ~n, label = ~popup_text)
-  
 ```
-
-
-
-
-### This ends the work completed on 10/25
 
 
 

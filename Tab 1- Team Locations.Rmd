@@ -1,15 +1,9 @@
 ---
-title: "Team Locations on Map Tab"
+title: "Tab 1 - Team Locations"
 author: "Jonathan Molner & Diya Shreenath"
 date: "11/11/2023"
 output: html_document
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## R Markdown
 
 ```{r}
 library(tidyverse)
@@ -36,12 +30,9 @@ library(leaflet)
 library(ggplot2)
 ```
 
-
 ```{r}
 icon.fa <- makeAwesomeIcon(icon = 'flag', markerColor = 'orange', library='fa', iconColor = 'gray')
 ```
-
-
 
 ```{r}
 leaflet(data = team_location_data) %>% 

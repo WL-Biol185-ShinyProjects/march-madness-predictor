@@ -1,25 +1,13 @@
 ---
-title: "Final Four Probability by Conference Part 2"
+title: "Tab 3 - FF Predictor by Conference Part 2"
 author: "Jonathan Molner & Diya Shreenath"
 date: "11/16/2023"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
 ```{r}
 new_data <- read_csv("~/march-madness-predictor/data/final_four_conference_data.csv")
 ```
-
-
 
 ```{r}
 new_data <- new_data %>%
@@ -27,12 +15,12 @@ new_data <- new_data %>%
   count(Conference, Year)
 ```
 
-
 ```{r}
 new_data <- new_data %>%
   group_by(Conference, n) %>%
   count()
 ```
+
 ### Renaming variables here
 ```{r}
 new_data <- new_data %>%
@@ -44,15 +32,16 @@ new_data <- new_data %>%
 new_data <- new_data %>%
   mutate(prob_occurence = (`Number of Times Occurred` / 83)*100)
 ```
+
 ### How to round prob occurence if needed
 ```{r}
 new_data$prob_occurence <- round(new_data$prob_occurence, digits = 0)
 ```
+
 ### How to add a percentage to prob occurence
 ```{r}
 new_data$prob_occurence <- paste0(new_data$prob_occurence, "%")
 ```
-
 
 ```{r}
 write.csv(new_data, file = "conference_predictor.csv")

@@ -1,20 +1,9 @@
 ---
-title: "Page 4 (or page 2 build on)"
+title: "Tab 3 - FF Predictor by Seed"
 author: "Jonathan Molner & Diya Shreenath"
 date: "11/8/2023"
 output: html_document
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
 
 ```{r}
 library(tidyverse)
@@ -55,8 +44,6 @@ seed_count <- seed_count %>%
 seed_count$prob_occurence <- round(seed_count$prob_occurence, digits = 0)
 ```
 
-
-
 ### Aesthetic Work
 ```{r}
 seed_count$Seed[is.na(seed_count$Seed)] <- 0
@@ -66,7 +53,6 @@ seed_count$prob_occurence <- paste0(seed_count$prob_occurence, "%")
 ```{r}
 seed_count$Seed <- round(seed_count$Seed, digits = 0)
 ```
-
 
 ```{r}
 seed_count <- seed_count %>%

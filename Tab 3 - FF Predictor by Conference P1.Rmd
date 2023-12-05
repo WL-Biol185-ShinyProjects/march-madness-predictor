@@ -1,13 +1,9 @@
 ---
-title: "Page 2 Markdown Part 1"
+title: "Tab 3 - FF Predictor by Conference"
 author: "Jonathan Molner & Diya Shreenath"
 date: "10/28/2023"
 output: html_document
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 ```{r}
 library(tidyverse)

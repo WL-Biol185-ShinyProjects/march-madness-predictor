@@ -1,15 +1,9 @@
 ---
-title: "Probability and Additional Graphs"
+title: "Tab 5 - Win Percentage by Round"
 author: "Jonathan Molner & Diya Shreenath"
 date: "11/11/2023"
 output: html_document
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## R Markdown
 
 ```{r}
 library(tidyverse)
@@ -54,17 +48,14 @@ win_pct_data <- win_pct_data %>%
          labels = c("Underdog Won", "Favorite Won")))
 ```
 
-
 ```{r}
 write.csv(win_pct_data, file = "win_percentage_by_round.csv")
 ```
 
-
-
 ```{r}
 win_pct_data %>%
 ggplot(mapping = aes(x = Round, y = win_pct, fill = Winner)) +
-  geom_col()
+  scale_fill_manual(values = c("skyblue", "darkblue")) +
+  geom_col() +
+  labs(title = paste("Win Percentage by Round"), x = "Round", y = "Win Percentage")
 ```
-
-### Might need to implement the round info but we will cross that bridge later if needed

@@ -1,19 +1,9 @@
 ---
-title: "Historical Performance By Team"
+title: "Tab 4 - Historical Performance"
 author: "Jonathan Molner & Diya Shreenath"
 date: "11/13/2023"
 output: html_document
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ```{r}
 library(tidyverse)
@@ -47,7 +37,6 @@ aggregate_maximum_round$maximum_round_favorite[is.na(aggregate_maximum_round$max
 aggregate_maximum_round$maximum_round_underdog[is.na(aggregate_maximum_round$maximum_round_underdog)] <- 0
 ```
 
-
 ```{r}
 aggregate_maximum_round <- aggregate_maximum_round %>%
   group_by(Year, Favorite) %>%
@@ -56,7 +45,6 @@ aggregate_maximum_round <- aggregate_maximum_round %>%
   select(Year, Team, final_round) %>%
   distinct()
 ```
-
 
 ```{r}
 aggregate_maximum_round <- aggregate_maximum_round %>%
@@ -73,7 +61,6 @@ aggregate_maximum_round$Year <- round(aggregate_maximum_round$Year, digits = 0)
 write.csv(aggregate_maximum_round, file = "historical_performance.csv")
 ```
 
-### Graph is set. Just want to change the format from year to a date format to make the x axis of the graph discrete so we can see year by year on the x axis.
 ```{r}
 aggregate_maximum_round %>%
   filter(Team == "Arizona") %>%

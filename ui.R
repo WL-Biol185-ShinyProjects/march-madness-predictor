@@ -102,6 +102,7 @@ ui <- fluidPage(
               ),
               selectInput("team_round_select", "Select a Team",
                           choices = unique(historical_data$Team),
+                          selected = "Duke",
               ),
               plotOutput("historical_plot"),
               tags$h3("Our Takeaways"),

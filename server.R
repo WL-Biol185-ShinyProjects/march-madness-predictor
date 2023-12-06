@@ -146,6 +146,11 @@ server <- function(input, output) {
       mutate(Winner = factor(Winner,
                             levels = c("Underdog Won", "Favorite Won"),
                             labels = c("Underdog Won", "Favorite Won")))
+    
+    win_percentage_by_round <- win_percentage_by_round %>%
+      mutate(Round = factor(Round,
+                            levels = c(1, 2, 3, 4, 5, 6),
+                            labels = c("First Round", "Second Round", "Sweet Sixteen", "Elite Eight", "Final Four", "Championship Game")))
   
     output$round_plot <- renderPlot({
       win_percentage_by_round %>%

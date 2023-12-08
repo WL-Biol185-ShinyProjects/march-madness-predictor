@@ -64,9 +64,10 @@ write.csv(aggregate_maximum_round, file = "historical_performance.csv")
 
 ```{r}
 aggregate_maximum_round %>%
-  filter(Team == "Arizona") %>%
+  filter(Team == "Abilene Christian") %>%
   ggplot(mapping = aes(x = Year, y = Round_Reached)) +
   geom_tile() +
-  scale_x_continuous(breaks = seq(min(aggregate_maximum_round$Year), max(aggregate_maximum_round$Year), by = 1))
+  scale_x_continuous(breaks = seq(min(aggregate_maximum_round$Year), max(aggregate_maximum_round$Year), by = 1)) +
+  coord_cartesian(xlim = c(2013, 2023))
 ```
 

@@ -134,6 +134,7 @@ server <- function(input, output) {
       ggplot(filtered_data, aes(x = Year, y = Round_Reached)) +
         geom_tile(fill = "skyblue") +
         scale_x_continuous(breaks = seq(min(historical_data$Year), max(historical_data$Year), by = 1)) +
+        coord_cartesian(xlim = c(2013, 2023)) +
         labs(
           title = paste("Historical Performance by", team_name),
           x = "Year",

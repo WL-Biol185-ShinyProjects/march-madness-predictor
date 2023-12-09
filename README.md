@@ -59,3 +59,7 @@ Figured out the download button and majority of aesthetic changes. Will need to 
 Notes as of 12/4
 
 Received comments from Professor Whitworth... made changes to address comments
+
+Notes as of 12/8
+
+FINISHED THE APP!!! Addressed all changes suggested by Professor Whitworth

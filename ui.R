@@ -25,12 +25,12 @@ ui <- fluidPage(
       "Tabs",
       tabPanel("About",
                fluidPage(
-                 tags$h3("About Our App!"),
-                 tags$p("Welcome to our app. As two March Madness fans we are really excited about this project. Given our historically poor performance making March Madness Brackets in the past, we wanted to create something that analyzes variables to see if they can predict different outcomes that should be considered when making brackets. We considered variables such as Location, Distances Traveled by a Team, Seeds, Conferences, And Favorite vs. Underdog designations. From our work, we believe we can now help basketball dummies make quality predictions."),
+                 tags$h3("About Our App"),
+                 tags$p("Welcome to our app! As two March Madness fans we are really excited about this project. Given our historically poor performance making March Madness Brackets in the past, we wanted to create something that analyzes variables to see if they can predict different outcomes that should be considered when making brackets. We considered variables such as Location, Distance Traveled by a Team, Seeds, Conferences, And Favorite vs. Underdog designations. From our work, we believe we can now help basketball dummies make quality predictions."),
                  tags$h3("Data Collection"),
                  tags$p("We realized that March Madness Data is not easily attainable or standardized under one single free data table on the web. So, we created our own dataset for this project using data directly from ESPN and fivethirtyeight’s websites. We have two primary datasets that we created for our app. The first dataset includes the last ten years of data for every game played in the March Madness tournament. It includes which team was considered the Favorite or Underdog, who the winner of each game was, what the seed was for the favorite team and for the underdog team, the city and state where the game was played, the round of each game, the latitude and longitude data for the cities (using data from US Postal Offices), and the latitude and longitude data for each team who competed within the tournament. The second dataset that we created includes all teams that have made the Final Four since the tournament’s inception, highlighting each team’s seed and conference. Being able to aggregate all this data into two common sources was a taxing and time-consuming process. We believe that our data collection process targeted towards standardization helps achieve easy accessibility that has not always been seen in the past. Now you can have access to this data too by pressing the download button!"),
                  tags$br(),
-                 tags$p("One important thing to note is that 2020 data for the March Madness Tournament does not exist because the tournament was not played that year due to COVID-19."),
+                 tags$p("One important thing to note is that 2020 data for the March Madness Tournament does not exist because the tournament was not played that year due to COVID-19. Distance Data for the year 2021 is not part of this analysis either since that year all games were played in the same location due to the tournament still being affected by COVID-19."),
                ),
       downloadButton("download_about_data", "Download our March Madness Dataset"),
     ),
@@ -39,7 +39,7 @@ ui <- fluidPage(
     tabPanel("Game Locations & Team Locations",
             fluidPage(
               tags$h3("Where are Games Played & Where are Teams Located?"),
-              tags$p("Use the drop-down box to select either Game Locations or Team Locations. Game Locations will show you where all the games in the March Madness tournament in the last ten years were played. Team Locations will show you where all the teams that have played in the tournament are located.")
+              tags$p("Use the drop-down box to select either Game Locations or Team Locations. Game Locations will show you where all the March Madness games were played over the last ten years. Team Locations will show you where all the teams that have played in the tournament are located. Hover over the game locations to see how many games have been played there and hover over the team location popups to see what team is located there.")
             ),
             selectInput("location_type", "Select Either Game or Team Locations",
                       choices = c("Game Locations","Team Locations")),
@@ -47,14 +47,14 @@ ui <- fluidPage(
             tags$h3("Our Takeaways"),
             tags$p("The main takeaway on this map is that most teams that have made the tournament are located on the eastern half of the U.S., predominantly the southeast, east coast, and Midwest. Similarly, most games that are being played also are primarily on the eastern half of the U.S. While these maps only give viewers an understanding on where teams and games are located, we will later explore how location matters for these teams and whether traveling a long distance has an impact on winning a game. Take a look at where teams such as SDSU and Gonzaga are located on the map, being able to visualize where each school is located will come in handy on future tabs."),
             tags$br(),
-            tags$p("Important Note: In 2021, there were an additional 63 games played in Indianapolis due to COVID-19 still affecting the tournament. All games were played in this location that year.")
+            tags$p("Important Note: In 2021, all 63 games of the March Madness tournament that year were played in Indianapolis due to COVID-19 still affecting the tournament.")
             ),
       
     #Tab 2 - Distances Traveled
     tabPanel("Distances Traveled",
               fluidPage(
                 tags$h3("Does Distance Traveled by a Team Affect Who Wins?"),
-                tags$p("Use the drop-down box to select a team that has made it to the final four in the last ten years. The graph shows the aggregate minimum, average, and maximum distance traveled by teams who have made the final four. The average distance traveled is about 4,300 miles. The table will show you each year the team has made the final four and what the total distance traveled was in miles.")
+                tags$p("Use the drop-down box to select a team that has made it to the final four in the last ten years. The graph shows the aggregate minimum, average, and maximum distance traveled by teams who have made the final four. The average distance traveled is about 4,300 miles. The table located under the first graph will show you each year the team has made the final four and what the total distance traveled was in miles.")
               ),
               selectInput("team_select", "Select a Team", 
                            choices = unique(distance_data$team_name)
@@ -63,7 +63,7 @@ ui <- fluidPage(
               tableOutput("data_table_distances"),
               plotOutput("aggregate_distance_plot"),
               tags$h3("Our Takeaways"),
-              tags$p("As you can see by clicking through the different teams, teams along the west coast (such as Gonzaga or SDSU) on average had to travel a longer distance to reach the final four. This is consistent with what we saw on the earlier tab where we can see that most of the games are played on the east coast. Another aspect that we wanted to highlight were the stationary graphs that depict the relationship of distance traveled on winning a game. From the graphs, the mean distance traveled and IQR of distance traveled for winning teams was lower than that of losing teams, illustrating that distance traveled has a negative correlation on winning. This relationship is probably due to “home court advantage”. If a team must travel a farther distance for a game, then it will probably be more difficult for the team’s fans to cheer on and support the team, resulting in increased difficulty in victory.")
+              tags$p("As you can see by clicking through the different teams, teams along the west coast (such as Gonzaga or SDSU) on average had to travel a longer distance to reach the final four. This is consistent with what we saw on the earlier tab where we can see that most of the games are played on the east coast. Take a look at the box plots which depict the relationship of distance traveled on winning a game. From the boxplots, the mean distance traveled and IQR of distance traveled for winning teams was lower than that of losing teams, illustrating that distance traveled has a negative correlation on winning. This relationship is probably due to “home court advantage.” If a team must travel a farther distance for a game, then it will probably be more difficult for the team’s fans to cheer on and support the team, resulting in increased difficulty in victory.")
               ),
 
     #Tab 3 - Final Four Predictor
